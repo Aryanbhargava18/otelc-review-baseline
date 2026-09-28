@@ -1,0 +1,1442 @@
+[
+ {
+  "i": 0,
+  "pr": 464,
+  "file": "testing.md",
+  "near_copilot": true,
+  "label": "question/design",
+  "excerpt": "```suggestion 2. Open a new rule entry covering `v4.5.6,` and implement the updated hook. ```"
+ },
+ {
+  "i": 1,
+  "pr": 464,
+  "file": "testing.md",
+  "near_copilot": true,
+  "label": "question/design",
+  "excerpt": "```suggestion 1. Cap the existing rule's version range in the relevant `pkg/instrumentation/.../*.yaml` file (e.g. change the version field from `v1.2.3` to `v1.2.3,v4.5."
+ },
+ {
+  "i": 2,
+  "pr": 464,
+  "file": "latestlibbuild_test.go",
+  "near_copilot": true,
+  "label": "question/design",
+  "excerpt": "Perhaps we shouldn't upgrade all dependencies in go.mod to their latest versions. Instead, we should only update specific dependencies per module. For example, in test/ap"
+ },
+ {
+  "i": 3,
+  "pr": 470,
+  "file": "parse.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "This regex is too tricky, e.g. from `user:pass@tcp(host)/mydb?timeout=30s&database=other` matches `database=other` what about making `parseDSN` return also the dbname?"
+ },
+ {
+  "i": 4,
+  "pr": 470,
+  "file": "main.go",
+  "near_copilot": false,
+  "label": "question/design",
+  "excerpt": "What's the value of these new registrations in the test?"
+ },
+ {
+  "i": 5,
+  "pr": 470,
+  "file": "parse.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "Could we add some unit tests to cover non-happy path scenarios?"
+ },
+ {
+  "i": 6,
+  "pr": 464,
+  "file": "latestlibbuild_test.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "`targets` should be guaranteed to non-empty?"
+ },
+ {
+  "i": 7,
+  "pr": 484,
+  "file": "spans.go",
+  "near_copilot": false,
+  "label": "question/design",
+  "excerpt": "One of the main uses of SpanMatcher is to target attributes `testutil.HasAttribute(...)`. It could also be interesting to print them"
+ },
+ {
+  "i": 8,
+  "pr": 463,
+  "file": "readiness.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "nitpick: just for naming consistency ```suggestion defaultSpanPollTimeout = 3 * time.Second ```"
+ },
+ {
+  "i": 9,
+  "pr": 499,
+  "file": "main.go",
+  "near_copilot": true,
+  "label": "defect",
+  "excerpt": "It seems the `-debug` flag is not passed to instrument phase. So, does this mean the flag only works in the setup phase and is actually ineffective in the instrument phas"
+ },
+ {
+  "i": 10,
+  "pr": 499,
+  "file": "main.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "No `Sources: cli.EnvVars(...)`?"
+ },
+ {
+  "i": 11,
+  "pr": 483,
+  "file": "setup.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "This could mistakenly affect some build commands, for example: `go build -ldflags=\"-X main.conf=config.go\" main.go`"
+ },
+ {
+  "i": 12,
+  "pr": 502,
+  "file": "sync.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "Please add oneline commet, as this is not very intuitive(self-explanatory)"
+ },
+ {
+  "i": 13,
+  "pr": 502,
+  "file": "sync.go",
+  "near_copilot": false,
+  "label": "question/design",
+  "excerpt": "I suggest: - Remove hookModule, we only need to inform the user which dependencies in go.mod have been upgraded. - Use consistent warning messages, for example: ``` \"Bump"
+ },
+ {
+  "i": 14,
+  "pr": 502,
+  "file": "sync.go",
+  "near_copilot": true,
+  "label": "defect",
+  "excerpt": "This is error, not a warning"
+ },
+ {
+  "i": 15,
+  "pr": 502,
+  "file": "sync.go",
+  "near_copilot": true,
+  "label": "defect",
+  "excerpt": "Maybe simply? ``` for req:= range after.Requires{ if oldVer,tracked:= before.deps[req.Mod.Path];tracked { .... } } ```"
+ },
+ {
+  "i": 16,
+  "pr": 502,
+  "file": "sync.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "`semver.IsValid` make no sense?"
+ },
+ {
+  "i": 17,
+  "pr": 806,
+  "file": "govulncheck.yaml",
+  "near_copilot": false,
+  "label": "question/design",
+  "excerpt": "The core job (source scan of root + pkg, which includes tool/ \u2014 the instrumentation compiler itself) is soft-fail via continue-on-error, while the instrumentation job (sc"
+ },
+ {
+  "i": 18,
+  "pr": 806,
+  "file": "govulncheck.yaml",
+  "near_copilot": false,
+  "label": "question/design",
+  "excerpt": "On the weekly schedule (and workflow_dispatch) there's no PR to turn red. Given the core job stays non-blocking and instrumentation stays blocking, what surfaces a schedu"
+ },
+ {
+  "i": 19,
+  "pr": 806,
+  "file": "renovate.json5",
+  "near_copilot": false,
+  "label": "question/design",
+  "excerpt": "minimumReleaseAge is set at the top level, so it applies to every Renovate- managed dependency, not just the ones this PR is worried about. The PR body says this is delib"
+ },
+ {
+  "i": 20,
+  "pr": 806,
+  "file": "Makefile",
+  "near_copilot": true,
+  "label": "question/design",
+  "excerpt": "The comment here explains why instrumentation/ is scanned via test-app binaries instead of source scan, but doesn't mention that coverage is only as good as the test apps"
+ },
+ {
+  "i": 21,
+  "pr": 1211,
+  "file": "setup.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "The two -toolexec construction sites now follow different error-wrapping conventions for the same failure. nestedToolexecGoflagsToken propagates BuildToolexecFlag's error"
+ },
+ {
+  "i": 22,
+  "pr": 655,
+  "file": "pin.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "Confirmed with a local build against `ee9905bb`: a project that commits `otel.instrumentation.go` can't be built with `otelc go build`. The update path here (`updatePinne"
+ },
+ {
+  "i": 23,
+  "pr": 654,
+  "file": "configuration.md",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "The doc is now `../instrumentation/go.opentelemetry.io/otel/README.md`"
+ },
+ {
+  "i": 24,
+  "pr": 654,
+  "file": "external-configuration.md",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "This link does not point to a valid section in that page?"
+ },
+ {
+  "i": 25,
+  "pr": 654,
+  "file": "external-configuration.md",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "Changed to `go.opentelemetry.io/otelc`"
+ },
+ {
+  "i": 26,
+  "pr": 654,
+  "file": "external-configuration.md",
+  "near_copilot": false,
+  "label": "question/design",
+  "excerpt": "This line can be removed, I changed `otelc pin` to use tool directive instead of being imported to `otel.instrumentation.go` in #655"
+ },
+ {
+  "i": 27,
+  "pr": 654,
+  "file": "external-configuration.md",
+  "near_copilot": false,
+  "label": "question/design",
+  "excerpt": "Same as https://github.com/open-telemetry/opentelemetry-go-compile-instrumentation/pull/654#discussion_r3537626267"
+ },
+ {
+  "i": 28,
+  "pr": 654,
+  "file": "troubleshooting.md",
+  "near_copilot": true,
+  "label": "question/design",
+  "excerpt": "This should be something like: Generated helper file for runtime hooks/file injections."
+ },
+ {
+  "i": 29,
+  "pr": 654,
+  "file": "troubleshooting.md",
+  "near_copilot": false,
+  "label": "question/design",
+  "excerpt": "Same as https://github.com/open-telemetry/opentelemetry-go-compile-instrumentation/pull/654#discussion_r3537578215"
+ },
+ {
+  "i": 30,
+  "pr": 654,
+  "file": "troubleshooting.md",
+  "near_copilot": false,
+  "label": "question/design",
+  "excerpt": "I'm not sure if this is true. As long as the instrumentation module's `go.mod` declares the dependency, it can import it. For example, the `k8s.io/client-go` instrumentat"
+ },
+ {
+  "i": 31,
+  "pr": 654,
+  "file": "configuration.md",
+  "near_copilot": false,
+  "label": "question/design",
+  "excerpt": "Which are these ones, any example? Its not clear for the reader"
+ },
+ {
+  "i": 32,
+  "pr": 654,
+  "file": "configuration.md",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "This whole sections is duplicated in `rules.md` (e.g. [glob](https://github.com/kakkoyun/opentelemetry-go-compile-instrumentation/blob/a0bbc38e765dc9d0585dfe14aeb9deeee16"
+ },
+ {
+  "i": 33,
+  "pr": 654,
+  "file": "external-configuration.md",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "This is also documented in the new `configuration.md` file"
+ },
+ {
+  "i": 34,
+  "pr": 654,
+  "file": "external-configuration.md",
+  "near_copilot": false,
+  "label": "question/design",
+  "excerpt": "Could we just document non-supported use cases? No need to write the whole error. Just sth simpler"
+ },
+ {
+  "i": 35,
+  "pr": 654,
+  "file": "troubleshooting.md",
+  "near_copilot": false,
+  "label": "question/design",
+  "excerpt": "Lets add TOC"
+ },
+ {
+  "i": 36,
+  "pr": 654,
+  "file": "external-configuration.md",
+  "near_copilot": false,
+  "label": "question/design",
+  "excerpt": "I'd also comment about `otelc pin` from https://github.com/open-telemetry/opentelemetry-go-compile-instrumentation/pull/655/changes"
+ },
+ {
+  "i": 37,
+  "pr": 655,
+  "file": "getting-started.md",
+  "near_copilot": false,
+  "label": "question/design",
+  "excerpt": "Lets document the pin flags"
+ },
+ {
+  "i": 38,
+  "pr": 674,
+  "file": "go.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "`splitGoflags` only separates on space and tab, but Go parses GOFLAGS with `cmd/internal/quoted.Split`, which also treats `\\n` and `\\r` as separators. A newline before th"
+ },
+ {
+  "i": 39,
+  "pr": 674,
+  "file": "toolexec.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "This wraps the executable path in single quotes by hand, so a path containing a single quote breaks the quoting. For an otelc binary under something like `/home/kakkoyun/"
+ },
+ {
+  "i": 40,
+  "pr": 678,
+  "file": "otel_trace_context.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "An entry only leaves `spanStates` in `markSpanEnded`, which runs from the `End` hook. A span that is started but never ended (a leaked span, or a panic that skips `defer "
+ },
+ {
+  "i": 41,
+  "pr": 678,
+  "file": "otel_trace_context.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "If the registry stays, `sync.Map` matches this workload poorly. Every span start stores a fresh key and every end deletes it, which is the create-then-delete churn its ow"
+ },
+ {
+  "i": 42,
+  "pr": 678,
+  "file": "otel_trace_context.go",
+  "near_copilot": true,
+  "label": "defect",
+  "excerpt": "`tail()` reclaims ended wrappers only from the head, and a cross-goroutine `End` marks a wrapper ended through `markSpanEnded` without touching that goroutine's list or `"
+ },
+ {
+  "i": 43,
+  "pr": 678,
+  "file": "otel_trace_context.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "With `End` now expected to run on a goroutine that never held the span, `traceContextDelSpan` -> `getOrInitTraceContext()` allocates and installs an empty `traceContext` "
+ },
+ {
+  "i": 44,
+  "pr": 678,
+  "file": "otel_trace_context.go",
+  "near_copilot": true,
+  "label": "defect",
+  "excerpt": "`tail()` now mutates the context by popping ended wrappers, but it is still called as a getter from `GetTraceAndSpanID`, `GetTraceContext`, and `spanFromGLS`. That is saf"
+ },
+ {
+  "i": 45,
+  "pr": 674,
+  "file": "toolexec_exec_test.go",
+  "near_copilot": false,
+  "label": "question/design",
+  "excerpt": "Move to `tool_version_test.go`?"
+ },
+ {
+  "i": 46,
+  "pr": 678,
+  "file": "main.go",
+  "near_copilot": false,
+  "label": "question/design",
+  "excerpt": "Lets add some comments on why and what each of them does. e.g. why _[server, lower, top] stack and why MAX_SPANS=3_ etc."
+ },
+ {
+  "i": 47,
+  "pr": 612,
+  "file": "config.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "`resolveInstrumentationConfig` requires each imported package to be *compilable*, but the walk only needs the package's directory and module \u2014 neither requires a build. A"
+ },
+ {
+  "i": 48,
+  "pr": 612,
+  "file": "rules.md",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "The precedence table lists `.otel.yml` as tier 4, but that file type has no reader in the codebase \u2014 `loadRules`'s tier 4 is `loadDefaultRules()` which reads the embedded"
+ },
+ {
+  "i": 49,
+  "pr": 629,
+  "file": "match.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "When `sp.rootModulePaths` has more than one entry (e.g. a monorepo with nested modules, or a `go.work` build), this loop pushes the same `rule.InstRule` into `globRules` "
+ },
+ {
+  "i": 50,
+  "pr": 629,
+  "file": "target_glob.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "```go func IsRootTarget(target string) bool { return target == TargetRoot } ``` is exact-string equality with no companion check in `ValidateTarget`. A rule author who wr"
+ },
+ {
+  "i": 51,
+  "pr": 629,
+  "file": "setup.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "```go moduleDir, err := pkgload.ResolveModuleDir(ctx, pkgDir) ... mf, err := parseGoMod(filepath.Join(moduleDir, \"go.mod\")) ``` `ResolveModuleDir` already calls `packages"
+ },
+ {
+  "i": 52,
+  "pr": 629,
+  "file": "setup.go",
+  "near_copilot": true,
+  "label": "defect",
+  "excerpt": "```go sp.rootModulePaths, err = rootModulePaths(ctx, pkgs) if err != nil { return err } ``` This runs unconditionally before any rule is loaded. Its failure mode (see the"
+ },
+ {
+  "i": 53,
+  "pr": 629,
+  "file": "match_test.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "The multi-root `$root` expansion path (`for _, root := range sp.rootModulePaths` in match.go) has no end-to-end test with 2+ roots \u2014 this test and `TestRootModulePaths` e"
+ },
+ {
+  "i": 54,
+  "pr": 629,
+  "file": "rules.md",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "> `target: $root` \u2014 matches the root module of the build and every package below it. The wording implies a single canonical root, but `rootModulePaths()` can resolve mult"
+ },
+ {
+  "i": 55,
+  "pr": 629,
+  "file": "match.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "This is the only log line that shows the resolved glob (`gr.target`, e.g. `example.com/app/**`). Downstream match/log calls further into `matchOneRule` still log the rule"
+ },
+ {
+  "i": 56,
+  "pr": 629,
+  "file": "setup.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "```go if mf.Module != nil && mf.Module.Mod.Path != \"\" { roots[mf.Module.Mod.Path] = true } ``` This takes the parsed go.mod module path with no `golang.org/x/mod/module.C"
+ },
+ {
+  "i": 57,
+  "pr": 629,
+  "file": "setup.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "`pkgload.ResolveModuleDir` (which spawns a `go list` subprocess) is called twice for the same package directory in the file-target case \u2014 once here in `rootModulePaths`, "
+ },
+ {
+  "i": 58,
+  "pr": 629,
+  "file": "pkgload.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "`-C`/`-C=` flag parsing (space-separated vs `=`-joined forms) is now implemented independently here and again in `setup.go`'s `flagsWithPathValues`/`extractBuildFlags`/`s"
+ },
+ {
+  "i": 59,
+  "pr": 629,
+  "file": "setup.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "`-C`'s value is resolved with `filepath.Abs` in `loadDirFromBuildFlags`, but `-overlay`'s path is forwarded as-is with no equivalent resolution relative to a `-C` directo"
+ },
+ {
+  "i": 60,
+  "pr": 629,
+  "file": "pkgload.go",
+  "near_copilot": false,
+  "label": "lint (CI)",
+  "excerpt": "```go switch { case flag == \"-C\": ``` `wsl` (from an unrestricted `golangci-lint run --no-config --default=all` pass, not part of this repo's own lint config): anonymous "
+ },
+ {
+  "i": 61,
+  "pr": 612,
+  "file": "config.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "`seenToolFiles` is only populated when a discovered config's `ToolFile` gets enqueued. The initial `toolFiles` seed list passed into `walkInstrumentation` is never record"
+ },
+ {
+  "i": 62,
+  "pr": 612,
+  "file": "config.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "Each newly discovered import in `walkInstrumentation` resolves via its own `packages.Load` call (this line), and `FindModuleDirs` (pkgload.go:164) does the same per packa"
+ },
+ {
+  "i": 63,
+  "pr": 612,
+  "file": "pkgload.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "`GetPackageDir` keeps the `Get`-prefixed name this project's own conventions avoid on getters. The two other new accessors added in this same PR (`resolveModuleDir`, `Fin"
+ },
+ {
+  "i": 64,
+  "pr": 612,
+  "file": "pkgload.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "Nitpick: I was thinking sth like this for cases where there is module without go files ```suggestion pkgDir := PackageDir(pkg) if pkgDir == \"\" { logger.WarnContext(ctx, \""
+ },
+ {
+  "i": 65,
+  "pr": 612,
+  "file": "config.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "```suggestion if pkgDir == \"\" { pkgDir = filepath.Join(modDir, filepath.FromSlash(strings.TrimPrefix(importPath, pkg.Module.Path))) } else if len(pkg.Errors) > 0 { // Sur"
+ },
+ {
+  "i": 66,
+  "pr": 647,
+  "file": "otelc.yaml",
+  "near_copilot": false,
+  "label": "question/design",
+  "excerpt": "I see this one was removed. We no longer need it? AFAIU we still want to gate repeated calls to `SetTracerProvider`."
+ },
+ {
+  "i": 67,
+  "pr": 764,
+  "file": "instrument_test.go",
+  "near_copilot": true,
+  "label": "question/design",
+  "excerpt": "Normalizing `\\r\\n` to `\\n` makes sense to me, but I'm not sure about collapsing consecutive blank lines. I haven't run into this on Go 1.25 or 1.26 (on linux/freebsd), an"
+ },
+ {
+  "i": 68,
+  "pr": 764,
+  "file": "instrument_test.go",
+  "near_copilot": true,
+  "label": "question/design",
+  "excerpt": "Do we need this anymore? I'm expecting the git attribute to automatically normalize CRLF in the golden files. We can maybe just use golden.Assert?"
+ },
+ {
+  "i": 69,
+  "pr": 764,
+  "file": "instrument_test.go",
+  "near_copilot": true,
+  "label": "defect",
+  "excerpt": "Since the behavior changed now, I think the func name/description is misleading now."
+ },
+ {
+  "i": 70,
+  "pr": 806,
+  "file": "Makefile",
+  "near_copilot": false,
+  "label": "question/design",
+  "excerpt": "otelc should handle the cleanup"
+ },
+ {
+  "i": 71,
+  "pr": 806,
+  "file": "Makefile",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "This can be inlined now, since its used only in once place"
+ },
+ {
+  "i": 72,
+  "pr": 806,
+  "file": "Makefile",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "```suggestion govulncheck/instrumentation: $(GOVULNCHECK) build ## Scan instrumented test apps (binary mode) for known Go vulnerabilities ``` This should be like this to "
+ },
+ {
+  "i": 73,
+  "pr": 1377,
+  "file": "log_hook.go",
+  "near_copilot": false,
+  "label": "question/design",
+  "excerpt": "IMO the `isIdentChar` boundary checking is counterintuitive. Since the instrumentation injects the `trace_id` field preceded by a space (`\" trace_id=\"`), we can keep the "
+ },
+ {
+  "i": 74,
+  "pr": 1377,
+  "file": "log_hook_test.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "Could you please remove the `BenchmarkHasTraceID_NoMatch` and `BenchmarkHasTraceID_Match` functions? We don't run instrumentation-level micro-benchmarks in CI (the CI onl"
+ },
+ {
+  "i": 75,
+  "pr": 1360,
+  "file": "match.go",
+  "near_copilot": false,
+  "label": "question/design",
+  "excerpt": "Is there a real world usecase for `where` predicates on file rules? This PR adds the additional overhead of parsing the entire package multiple times. `fileRuleApplies` c"
+ },
+ {
+  "i": 76,
+  "pr": 1360,
+  "file": "rules.md",
+  "near_copilot": false,
+  "label": "question/design",
+  "excerpt": "Using `where.file` to match against the whole package sounds confusing from an API perspective since \"file\" implies a single file. We should probably rethink this naming "
+ },
+ {
+  "i": 77,
+  "pr": 1362,
+  "file": "add.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "nit: This covers a hooks package importing itself, but not a hooks package that imports another package the same build selects. If `hooks` imports `example.com/app/intern"
+ },
+ {
+  "i": 78,
+  "pr": 1362,
+  "file": "add_test.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "nit: Both `addDeps` calls share one state manager, so the first call already records the path as missing and the `Track` in `removeRuntimeFile` does nothing here. The tes"
+ },
+ {
+  "i": 79,
+  "pr": 1362,
+  "file": "setup.go",
+  "near_copilot": true,
+  "label": "defect",
+  "excerpt": "nit: This load doesn't get the user's build flags, while `getBuildPackages` loads with `extractBuildFlags(args)`. If every hook file is behind a build tag (`otelc go buil"
+ },
+ {
+  "i": 80,
+  "pr": 1362,
+  "file": "add_test.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "nit: The golden file already checks this, and the substring match can fail on a valid file when a remaining import shares the prefix, e.g. `example.com/local-hooks/v2` fo"
+ },
+ {
+  "i": 81,
+  "pr": 1362,
+  "file": "setup.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "nit: This warns on every file-target build where the lookup fails, including builds with no local hooks. The fallback is expected outside a module, so `Debug` may be enou"
+ },
+ {
+  "i": 82,
+  "pr": 1390,
+  "file": "inject.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "If this load fails, the error only goes to `.otelc-build/debug.log`. Setup carries on without the injected packages, so rules that target them are never matched and nothi"
+ },
+ {
+  "i": 83,
+  "pr": 1390,
+  "file": "inject.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "The `matchInjectedDeps` doc comment runs straight into the `injectionSource` comment with no blank line, so godoc attaches the whole block to `injectionSource` and `match"
+ },
+ {
+  "i": 84,
+  "pr": 1390,
+  "file": "inject_test.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "With `hookPaths` nil, `injectedDeps` returns at the `len(hookPaths) == 0` guard and never reads `known`, so this test only covers empty input. Nothing checks that package"
+ },
+ {
+  "i": 85,
+  "pr": 1394,
+  "file": "target.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "nit: YAML null reaches this scalar branch, so target: [null] loads as an include for the literal import path null. Could we reject null list entries, including not: null,"
+ },
+ {
+  "i": 86,
+  "pr": 1394,
+  "file": "target.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "nit: File.Rules re-marshals each entry before this decoder sees it, so item.Line can point to the wrong place. An invalid item at source line 3 reports line 4. Could we o"
+ },
+ {
+  "i": 87,
+  "pr": 1394,
+  "file": "target.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "nit: A YAML alias in a target list works through File.Rules, which resolves it while normalizing, but this branch rejects the same alias in the pin and manifest loaders. "
+ },
+ {
+  "i": 88,
+  "pr": 1394,
+  "file": "rules.md",
+  "near_copilot": true,
+  "label": "defect",
+  "excerpt": "nit: This field note still calls target a string. The table above says it can be a pattern or list; could we update the note too?"
+ },
+ {
+  "i": 89,
+  "pr": 1360,
+  "file": "match.go",
+  "near_copilot": true,
+  "label": "lint (CI)",
+  "excerpt": "nit: `applies, err :=` shadows the outer `err` from `parsePackageSources` and trips the CI `govet` shadow check. Could we use a separate error name here?"
+ },
+ {
+  "i": 90,
+  "pr": 1360,
+  "file": "match.go",
+  "near_copilot": false,
+  "label": "lint (CI)",
+  "excerpt": "nit: `ctx` is unused in `fileRuleApplies`, and CI's `revive` check fails on this parameter. Could we remove it from the signature and call site?"
+ },
+ {
+  "i": 91,
+  "pr": 1374,
+  "file": "apply_call.go",
+  "near_copilot": true,
+  "label": "defect",
+  "excerpt": "`applyCallReplace` deep-clones the replacement, including the original call. The cloned selector has no entry in the parser's node map, so FindPosition returns an empty p"
+ },
+ {
+  "i": 92,
+  "pr": 1374,
+  "file": "apply_call.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "nit: Could we apply `cfg.ImportMap` when looking up `PackageFile`? Go's `net/http` build maps `golang.org/x/net/http2/hpack` to `vendor/golang.org/x/net/http2/hpack`. The"
+ },
+ {
+  "i": 93,
+  "pr": 1374,
+  "file": "rules.md",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "nit: `(*zap.Logger).Info` returns no value, so `tracedInfo(logger.Info(...))` cannot compile. Could we use a closure that calls Info as a statement, or switch the example"
+ },
+ {
+  "i": 94,
+  "pr": 1312,
+  "file": "apply_decl.go",
+  "near_copilot": true,
+  "label": "defect",
+  "excerpt": "This runs after `compileExpression` has inserted the original initializer at `{{ . }}`, so the rewrite reaches application code too. With `import system \"os\"` and an appl"
+ },
+ {
+  "i": 95,
+  "pr": 1312,
+  "file": "imports.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "The file's import alias can be shadowed at the insertion point. With `import f \"fmt\"` and `func run(f sink)`, a raw rule importing `fmt` as `traced` rewrites `traced.Prin"
+ },
+ {
+  "i": 96,
+  "pr": 1312,
+  "file": "imports.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "nit: Could we make this choice deterministic when a file imports the same path under two aliases? `a \"fmt\"` and `b \"fmt\"` are valid together, but this map iteration keeps"
+ },
+ {
+  "i": 97,
+  "pr": 604,
+  "file": "middleware.go",
+  "near_copilot": true,
+  "label": "defect",
+  "excerpt": "io.LimitReader(req.Body, maxRequestBodySize) caps the read at 1 MB, and the truncated bytes then become req.Body, which is what gets sent. LimitReader returns io.EOF at t"
+ },
+ {
+  "i": 98,
+  "pr": 604,
+  "file": "middleware.go",
+  "near_copilot": true,
+  "label": "defect",
+  "excerpt": "Same truncation on the response side: bodies over 4 MB are cut, and the truncated copy is handed back to the caller, which then sees malformed JSON or an unexpected EOF. "
+ },
+ {
+  "i": 99,
+  "pr": 604,
+  "file": "middleware.go",
+  "near_copilot": true,
+  "label": "defect",
+  "excerpt": "v1 and v2 call ctx = runtime.SuppressHTTPClientInstrumentation(ctx) just before this line; v3 does not, and it also does not import pkg/runtime. Without it, the net/http "
+ },
+ {
+  "i": 100,
+  "pr": 604,
+  "file": "streaming.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "done is read and set here and again in Close(), with no synchronization, and finalize()/span.End() can run from both. An http.Response body can be read on one goroutine a"
+ },
+ {
+  "i": 101,
+  "pr": 604,
+  "file": "streaming.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "finalize() and span.End() run only when Read hits EOF/error or Close() is called. If a caller stops reading and never closes the body, the span stays open and accumulates"
+ },
+ {
+  "i": 102,
+  "pr": 604,
+  "file": "streaming.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "lineBuffer accumulates across reads and is only drained when a newline appears, so an upstream that never emits one grows it without limit. A cap on lineBuffer.Len() with"
+ },
+ {
+  "i": 103,
+  "pr": 604,
+  "file": "middleware.go",
+  "near_copilot": true,
+  "label": "defect",
+  "excerpt": "gen_ai.system is set to the literal \"openai\" here, while gen_ai.provider.name a few lines down is detected from the host, so a DeepSeek or Azure call carries both and the"
+ },
+ {
+  "i": 104,
+  "pr": 604,
+  "file": "middleware.go",
+  "near_copilot": true,
+  "label": "defect",
+  "excerpt": "The GenAI spec recommends CLIENT span kind for calls to a remote model; INTERNAL is for models running in-process. Since these go over the network, SpanKindClient matches"
+ },
+ {
+  "i": 105,
+  "pr": 604,
+  "file": "genai.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "gen_ai.request.is_stream and gen_ai.response.time_to_first_token (next line) are not in the GenAI registry. The spec does define a time-to-first-chunk span attribute, but"
+ },
+ {
+  "i": 106,
+  "pr": 604,
+  "file": "middleware.go",
+  "near_copilot": true,
+  "label": "defect",
+  "excerpt": "This branch only catches transport errors. A 4xx/5xx response with a nil Go error falls through to the success path, gets parsed as a completion, and the span ends OK wit"
+ },
+ {
+  "i": 107,
+  "pr": 604,
+  "file": "middleware.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "Two things here. The function iterates a map[string]string, and Go map iteration order is randomized, so if a future mapping ever has two keywords that both match the sam"
+ },
+ {
+  "i": 108,
+  "pr": 604,
+  "file": "middleware.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "When Unmarshal fails the function returns an empty model and no attributes, with nothing logged, so a malformed body produces a span named \"chat \" (empty model) and no si"
+ },
+ {
+  "i": 109,
+  "pr": 604,
+  "file": "streaming.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "This ctx field is stored but never read anywhere in the type. Storing a context in a struct is discouraged in general, and here it is also dead, so the field and the corr"
+ },
+ {
+  "i": 110,
+  "pr": 562,
+  "file": "setup.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "Missing flags from `go help testflags`"
+ },
+ {
+  "i": 111,
+  "pr": 617,
+  "file": "func_rule.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "`ModulePath` defaults to `Path` here (and the same in `file_rule.go`), but nothing checks that the two are consistent. Path resolution in `store.go` uses `Path`, while `s"
+ },
+ {
+  "i": 112,
+  "pr": 617,
+  "file": "store.go",
+  "near_copilot": true,
+  "label": "defect",
+  "excerpt": "Separate from the line-47 wording fix: this `continue` still discards the `packages.Load` error and `pkgs[0].Errors`, so when resolution fails in every module dir the cal"
+ },
+ {
+  "i": 113,
+  "pr": 617,
+  "file": "stub.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "The stub plus `//go:build ignore` pairing is load-bearing here: without the stub, `packages.Load` finds no buildable files and the package comes back with errors, so reso"
+ },
+ {
+  "i": 114,
+  "pr": 617,
+  "file": "sync.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "This embedded branch does run during the integration build (runtime's `add_file` rule leaves `module:` unset, so `ModulePath` defaults to `.../instrumentation/runtime` an"
+ },
+ {
+  "i": 115,
+  "pr": 617,
+  "file": "store.go",
+  "near_copilot": true,
+  "label": "defect",
+  "excerpt": "`util.Assert` here ends up calling `os.Exit(1)` (through `ex.Fatalf`), so if it ever trips it takes the whole build down from inside resolution and skips the deferred `Cl"
+ },
+ {
+  "i": 116,
+  "pr": 562,
+  "file": "match.go",
+  "near_copilot": true,
+  "label": "defect",
+  "excerpt": "This test detection misses the following scenario, although its quite uncommon TBH ``` mypackage/ handler.go \u2192 package mypackage handler_test.go \u2192 package mypackage_test "
+ },
+ {
+  "i": 117,
+  "pr": 561,
+  "file": "rules.md",
+  "near_copilot": false,
+  "label": "question/design",
+  "excerpt": "@kakkoyun WDYT about using https://github.com/bmatcuk/doublestar instead of maintaining that code? That way, we can just reference https://github.com/bmatcuk/doublestar#p"
+ },
+ {
+  "i": 118,
+  "pr": 617,
+  "file": "store.go",
+  "near_copilot": false,
+  "label": "question/design",
+  "excerpt": "Adding here `NeedModule` wouldn't give us the module directly, which would let us remove the new `module` in the rule yaml definition? In this case, its a bitmask, so the"
+ },
+ {
+  "i": 119,
+  "pr": 617,
+  "file": "func_rule.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "Let's also check that `Path` can't be null."
+ },
+ {
+  "i": 120,
+  "pr": 560,
+  "file": "func_rule.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "`Order` is more simply and consistency"
+ },
+ {
+  "i": 121,
+  "pr": 560,
+  "file": "func_rule.go",
+  "near_copilot": true,
+  "label": "defect",
+  "excerpt": "New fields added in the future may also factor into this calculation, we should briefly mention this in the InstFuncRule comment for reference."
+ },
+ {
+  "i": 122,
+  "pr": 560,
+  "file": "normalize.go",
+  "near_copilot": true,
+  "label": "question/design",
+  "excerpt": "It seems like `ApplicationIndex` and `identity` are two separate concepts\u2014one ensures hook order, while the other prevents conflicts. Should they be split into two separa"
+ },
+ {
+  "i": 123,
+  "pr": 528,
+  "file": "log.go",
+  "near_copilot": false,
+  "label": "lint (CI)",
+  "excerpt": "It seems that `golangci-lint` isn't happy. Please run `golangci-lint fmt` and commit the changes."
+ },
+ {
+  "i": 124,
+  "pr": 528,
+  "file": "main.go",
+  "near_copilot": false,
+  "label": "lint (CI)",
+  "excerpt": "This is shadowing the previous `err` and `golangci-lint` complains."
+ },
+ {
+  "i": 125,
+  "pr": 562,
+  "file": "base.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "Lets add this also to rules.md"
+ },
+ {
+  "i": 126,
+  "pr": 1170,
+  "file": "trampoline.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "The rename/collision fix is exercised only through the `IndexListExpr` branch (multi-parameter receivers): `TestExtractReceiverTypeParamsConstraint_RenamedInterParam`, `_"
+ },
+ {
+  "i": 127,
+  "pr": 689,
+  "file": "middleware.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "**[Major] `total_tokens` and `input_tokens` are incorrect when prompt caching is used** Anthropic's `input_tokens` field excludes cache tokens \u2014 cache reads and creations"
+ },
+ {
+  "i": 128,
+  "pr": 689,
+  "file": "middleware.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "**[Major] Streaming requests emit incomplete spans missing all response/usage attributes** The middleware creates a span and sets `gen_ai.request.is_stream=true` for stre"
+ },
+ {
+  "i": 129,
+  "pr": 689,
+  "file": "middleware.go",
+  "near_copilot": true,
+  "label": "defect",
+  "excerpt": "**[Minor] Request body is partially consumed when `ReadAll` returns an error** If `io.ReadAll` fails, `req.Body` has already been partially drained by the TeeReader, but "
+ },
+ {
+  "i": 130,
+  "pr": 689,
+  "file": "middleware.go",
+  "near_copilot": true,
+  "label": "defect",
+  "excerpt": "**[Minor] Missing nil check on `resp.Body`** If `resp.Body` is nil, `io.TeeReader(resp.Body, &buf)` will create a TeeReader with a nil source reader, causing a nil pointe"
+ },
+ {
+  "i": 131,
+  "pr": 689,
+  "file": "streaming.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "**[Minor] `streamingReader` edge cases are untested** The `streamingReader` contains real logic (atomic CAS guard for idempotent `finalize`, span lifecycle management), b"
+ },
+ {
+  "i": 132,
+  "pr": 689,
+  "file": "middleware.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "**[Suggestion] `getProviderName` uses map iteration with non-deterministic order** Go map iteration order is randomized. If a host matches multiple keywords (e.g., a hypo"
+ },
+ {
+  "i": 133,
+  "pr": 689,
+  "file": "middleware.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "Anthropic's `input_tokens` field excludes cache tokens \u2014 cache reads and creations are reported separately in `cache_read_input_tokens` and `cache_creation_input_tokens`."
+ },
+ {
+  "i": 134,
+  "pr": 689,
+  "file": "middleware.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "The middleware creates a span and sets `gen_ai.request.is_stream=true` for streaming responses, but `streamingReader.finalize()` only calls `span.End()` without setting a"
+ },
+ {
+  "i": 135,
+  "pr": 689,
+  "file": "middleware.go",
+  "near_copilot": true,
+  "label": "defect",
+  "excerpt": "If `io.ReadAll` fails, `req.Body` has already been partially drained by the TeeReader, but the body is not reassembled before calling `next(req)`. This passes a truncated"
+ },
+ {
+  "i": 136,
+  "pr": 689,
+  "file": "middleware.go",
+  "near_copilot": true,
+  "label": "defect",
+  "excerpt": "If `resp.Body` is nil, `io.TeeReader(resp.Body, &buf)` will create a TeeReader with a nil source reader, causing a nil pointer dereference panic when `ReadAll` calls `Rea"
+ },
+ {
+  "i": 137,
+  "pr": 689,
+  "file": "streaming.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "The `streamingReader` contains real logic (atomic CAS guard for idempotent `finalize`, span lifecycle management), but the only test coverage is `TestOtelMiddleware_Strea"
+ },
+ {
+  "i": 138,
+  "pr": 689,
+  "file": "middleware.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "Go map iteration order is randomized. If a host matches multiple keywords (e.g., a hypothetical `anthropic.com.localhost`), the returned provider would be non-determinist"
+ },
+ {
+  "i": 139,
+  "pr": 689,
+  "file": "anthropic_client_test.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "The mock server returns `input_tokens: 10, output_tokens: 20` but omits `cache_read_input_tokens` and `cache_creation_input_tokens`. The `RequireGenAIClientSemconv` helpe"
+ },
+ {
+  "i": 140,
+  "pr": 689,
+  "file": "otelc-bundle.tgz",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "this is not use"
+ },
+ {
+  "i": 141,
+  "pr": 696,
+  "file": "Makefile",
+  "near_copilot": false,
+  "label": "question/design",
+  "excerpt": "Can we configure renovate to auto-update this?"
+ },
+ {
+  "i": 142,
+  "pr": 696,
+  "file": "http.yaml",
+  "near_copilot": false,
+  "label": "question/design",
+  "excerpt": "@NameHaibinZhang, I have two quick questions on this: - Schemas sync --> How is it ensured that our semconv go code is in sync with these semconv schemas? - Adoption Scop"
+ },
+ {
+  "i": 143,
+  "pr": 707,
+  "file": "main.go",
+  "near_copilot": true,
+  "label": "defect",
+  "excerpt": "`LoadDefaultConfig` is called without an explicit region. AWS SDK v2 requires a non-empty region for SigV4 request signing and will attempt to resolve it from `AWS_REGION"
+ },
+ {
+  "i": 144,
+  "pr": 707,
+  "file": "semconv.go",
+  "near_copilot": true,
+  "label": "defect",
+  "excerpt": "nit: This assertion helper only validates 2 attributes. The `otelaws` middleware also emits `rpc.method` (in the form `Service/Operation`, e.g. `DynamoDB/ListTables`). Co"
+ },
+ {
+  "i": 145,
+  "pr": 710,
+  "file": "client.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "suggestion: `StatusCodeFromError` uses a direct type assertion (`err.(statusCoder)`) which won't extract the status code from wrapped errors. Since Go 1.20+ `errors.As` s"
+ },
+ {
+  "i": 146,
+  "pr": 764,
+  "file": "pr_body.txt",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "Please remove this."
+ },
+ {
+  "i": 147,
+  "pr": 764,
+  "file": "instrument_test.go",
+  "near_copilot": false,
+  "label": "question/design",
+  "excerpt": "This is still blocked on windows, can this be enabled now?"
+ },
+ {
+  "i": 148,
+  "pr": 806,
+  "file": "Makefile",
+  "near_copilot": true,
+  "label": "question/design",
+  "excerpt": "Should `govulncheck` be managed via the `.tools` module instead? I think renovate would update `.tools/go.mod` automatically, which would also let us drop the custom rege"
+ },
+ {
+  "i": 149,
+  "pr": 806,
+  "file": "Makefile",
+  "near_copilot": true,
+  "label": "question/design",
+  "excerpt": "We will probably need to skip some modules that rely on compile-time transformations (e.g, database/sql instrumentation)"
+ },
+ {
+  "i": 150,
+  "pr": 806,
+  "file": "govulncheck.yaml",
+  "near_copilot": false,
+  "label": "question/design",
+  "excerpt": "`govulncheck` is reporting several vulnerabilities in go stdlib library. Should we use the latest stable Go toolchain for this workflow instead of the version from `go.mo"
+ },
+ {
+  "i": 151,
+  "pr": 501,
+  "file": "gin.go",
+  "near_copilot": false,
+  "label": "question/design",
+  "excerpt": "Although the idea could be good, I'd remove this. In case we want an ON/OFF lever, we'd need to think in a common approach for all instrumentation pkgs."
+ },
+ {
+  "i": 152,
+  "pr": 385,
+  "file": "filter.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "The sibling-validation logic is repeated in `AllOf` & `OneOf` branches, could we mirror the approach used in `fileFilterMatches` here and validate combinator exclusivity "
+ },
+ {
+  "i": 153,
+  "pr": 385,
+  "file": "filter.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "Could we combine `buildAllOf` and `buildOneOf` into a single helper that returns `[]Filter`, then cast to `AllOf` / `OneOf` at the call site? The child-compilation loop i"
+ },
+ {
+  "i": 154,
+  "pr": 729,
+  "file": "rules.md",
+  "near_copilot": false,
+  "label": "question/design",
+  "excerpt": "This is a breaking change. Even minor so we need to document this on the `CHANGELOG.md` And we don't have it yet, so you have to create it."
+ },
+ {
+  "i": 155,
+  "pr": 806,
+  "file": "Makefile",
+  "near_copilot": false,
+  "label": "question/design",
+  "excerpt": "I'm not sure if we should raise this (cc @txabman42)"
+ },
+ {
+  "i": 156,
+  "pr": 729,
+  "file": "func_template.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "Why not pass the import alias map here? `MatchesTypeName` passes `nil` for the imports, which means it falls back to path-tail matching. That works for single-segment pac"
+ },
+ {
+  "i": 157,
+  "pr": 729,
+  "file": "apply_directive.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "Is this needed? If the template references return values (e.g. `{{.FuncReturn 0}}`), `funcTemplateData.returns()` already calls `collectReturnValues` which names them bef"
+ },
+ {
+  "i": 158,
+  "pr": 729,
+  "file": "apply_func.go",
+  "near_copilot": false,
+  "label": "question/design",
+  "excerpt": "This same fix was discussed in https://github.com/open-telemetry/opentelemetry-go-compile-instrumentation/pull/799#discussion_r3689788318 I'd suggest dropping this from t"
+ },
+ {
+  "i": 159,
+  "pr": 729,
+  "file": "func_template.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "All names in a single `dst.Field` share the same type, so looping over `field.Names` just to call `MatchesTypeName` repeatedly is unnecessary. Can replace the inner loop "
+ },
+ {
+  "i": 160,
+  "pr": 729,
+  "file": "func_template.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "Same fix applies here as well: ```suggestion matched, err := ast.MatchesTypeName(field.Type, typeStr) if err != nil { return \"\", err } if matched { return rets[idx], nil "
+ },
+ {
+  "i": 161,
+  "pr": 880,
+  "file": "hook.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "Maybe we should use `finishSpanWithError` here as well?"
+ },
+ {
+  "i": 162,
+  "pr": 729,
+  "file": "typename.go",
+  "near_copilot": false,
+  "label": "question/design",
+  "excerpt": "Why not just make `importAliasMap` public?"
+ },
+ {
+  "i": 163,
+  "pr": 854,
+  "file": "schema.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "Three lists have to stay hand-synced here: the typed `Selector*` consts, this map, and `AllSelectors()`. `TestAllSelectorsComplete` proves the map and the slice agree, bu"
+ },
+ {
+  "i": 164,
+  "pr": 854,
+  "file": "schema.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "Same duplication as the `selectors` map above \u2014 derive from `AllModifiers()` once `toSet` exists. ```suggestion var modifiers = toSet(AllModifiers()) ```"
+ },
+ {
+  "i": 165,
+  "pr": 854,
+  "file": "schema.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "This doc comment says `IsValidSelector` reports a \"known where-clause key,\" but `target`/`version` return `true` here while being explicitly illegal inside `where` (rejec"
+ },
+ {
+  "i": 166,
+  "pr": 854,
+  "file": "schema.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "\"match.go\" here means tool/internal/setup/match.go, a different package \u2014 worth naming it explicitly so this doesn't read as an intra-package reference. ```suggestion // "
+ },
+ {
+  "i": 167,
+  "pr": 854,
+  "file": "schema_test.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "This test exhaustively checks all 7 modifier aliases but only spot-checks 3 of the 20 selector aliases (SelFunc, WhereFile, CombAllOf). The other 16 (SelTarget, SelVersio"
+ },
+ {
+  "i": 168,
+  "pr": 502,
+  "file": "sync.go",
+  "near_copilot": true,
+  "label": "defect",
+  "excerpt": "I mean returning an error `return ex.Newf()` instead of just logging"
+ },
+ {
+  "i": 169,
+  "pr": 502,
+  "file": "sync.go",
+  "near_copilot": true,
+  "label": "defect",
+  "excerpt": "Checking `req.Indirect` makes no sense ? as snapshotVersion already checks that."
+ },
+ {
+  "i": 170,
+  "pr": 501,
+  "file": "server.yaml",
+  "near_copilot": false,
+  "label": "question/design",
+  "excerpt": "Could be interesting to have an `AfterNext` to catch all the `c.Errors()`, similar to [go-contrib approach](https://github.com/open-telemetry/opentelemetry-go-contrib/blo"
+ },
+ {
+  "i": 171,
+  "pr": 483,
+  "file": "setup.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "This could be tricky. e.g. `otelc go build ./cmd/main.go` would use `cmd` as module dir, thats not correct."
+ },
+ {
+  "i": 172,
+  "pr": 483,
+  "file": "setup.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "move `command-line-arguments` to a constant and reuse it"
+ },
+ {
+  "i": 173,
+  "pr": 502,
+  "file": "sync.go",
+  "near_copilot": true,
+  "label": "defect",
+  "excerpt": "`sp.Warn` logs to `.otelc-build/debug.log`. I suggest we write these warnings to stderr."
+ },
+ {
+  "i": 174,
+  "pr": 502,
+  "file": "sync.go",
+  "near_copilot": true,
+  "label": "defect",
+  "excerpt": "Same^"
+ },
+ {
+  "i": 175,
+  "pr": 502,
+  "file": "sync_test.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "Repeated test?"
+ },
+ {
+  "i": 176,
+  "pr": 483,
+  "file": "setup.go",
+  "near_copilot": false,
+  "label": "question/design",
+  "excerpt": "I'd move this to pkgload and rename it sth like `ResolveModuleDir`, aligned with current `ResolvePackageName` or `ResolveExportFiles`."
+ },
+ {
+  "i": 177,
+  "pr": 483,
+  "file": "setup.go",
+  "near_copilot": true,
+  "label": "defect",
+  "excerpt": "I would put a comment as a warning that files are in reverse order due to `splitBuildTargets` loop. It's not obviouse while reading the code that they are in reverse orde"
+ },
+ {
+  "i": 178,
+  "pr": 501,
+  "file": "gin_server_test.go",
+  "near_copilot": false,
+  "label": "defect",
+  "excerpt": "No needed, f := testutil.NewTestFixture(t) is done inside each run"
+ },
+ {
+  "i": 179,
+  "pr": 501,
+  "file": "gin_server_test.go",
+  "near_copilot": false,
+  "label": "question/design",
+  "excerpt": "Regarding i[ntegration test fail](https://github.com/open-telemetry/opentelemetry-go-compile-instrumentation/actions/runs/26028717488/job/76621954931?pr=501): Couple of i"
+ }
+]
