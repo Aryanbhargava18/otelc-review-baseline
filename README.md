@@ -7,8 +7,9 @@ on `open-telemetry/opentelemetry-go-compile-instrumentation`, 2026-05-03 to 2026
 
 ```sh
 gh auth login
-./fetch.sh          # ~18 API calls, writes data/rc_*.json
-python3 analyze.py
+./fetch.sh                  # ~60 API calls, writes data/
+python3 analyze.py          # counts, co-location, themes
+python3 analyze_labels.py   # metrics from the hand labels
 ```
 
 ## Method
@@ -25,15 +26,12 @@ python3 analyze.py
 
 ## Caveats
 
-These are proxies, not labelled data.
-
-- Co-location undercounts semantic matches that land on a different line, and overcounts
+- Co-location undercounts the same finding raised on a different line, and overcounts
   unrelated comments that happen to be nearby.
 - Keyword themes and reply classification are noisy; ~45 replied Copilot comments are unclassified.
-- Copilot coverage in this window is limited (inline comments on 56 PRs), partly because
-  auto-review was not consistently running.
-
-Next step is hand-labelling a sample to validate these numbers before using them as a baseline.
+- Hand labels (below) cover maintainer comments only. Copilot's own comments are not yet
+  labelled as useful / noise / wrong.
+- Copilot coverage in this window is limited, partly because auto-review was not consistently running.
 
 ## Hand labels
 
