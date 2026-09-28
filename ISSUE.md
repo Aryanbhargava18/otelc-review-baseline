@@ -1,6 +1,6 @@
 **Is your feature request related to a problem? Please describe.**
 
-Following up on @kakkoyun's note on Slack about an agentic review skill to make Copilot reviews more accurate. Before proposing anything I wanted a baseline, so I compared Copilot's inline review comments with maintainer inline review comments from 2026-05-03 to 2026-09-28 (1,723 comments). The data, scripts and my labels are here: <GIST_OR_REPO_LINK>.
+Following up on @kakkoyun's note on Slack about an agentic review skill to make Copilot reviews more accurate. Before proposing anything I wanted a baseline, so I compared Copilot's inline review comments with maintainer inline review comments from 2026-05-03 to 2026-09-28 (1,723 comments). The data, scripts and my labels are here: https://github.com/Aryanbhargava18/otelc-review-baseline.
 
 In short: Copilot reviews few PRs, and on the PRs it does review it misses most of what maintainers go on to flag.
 
