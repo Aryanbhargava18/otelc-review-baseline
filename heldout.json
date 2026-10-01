@@ -8,7 +8,8 @@
    "base_commit": "024202fac70d2bd4cfefc426c6e0515870617e45",
    "files": 9,
    "changed_lines": 42,
-   "maintainer_comments": 2
+   "maintainer_comments": 2,
+   "scope": "instrumentation"
   },
   {
    "pr": 1178,
@@ -17,7 +18,8 @@
    "base_commit": "3e803e7666aaae2370532f37c608f6622f8a0f68",
    "files": 5,
    "changed_lines": 221,
-   "maintainer_comments": 9
+   "maintainer_comments": 9,
+   "scope": "instrumentation"
   },
   {
    "pr": 1098,
@@ -26,7 +28,8 @@
    "base_commit": "e9c8e8e8047c2d8b93b77145454e4166a57cb3e1",
    "files": 3,
    "changed_lines": 220,
-   "maintainer_comments": 5
+   "maintainer_comments": 5,
+   "scope": "instrumentation"
   },
   {
    "pr": 1092,
@@ -35,7 +38,8 @@
    "base_commit": "128eb42893e28e5f2297c1a76324173415a85084",
    "files": 3,
    "changed_lines": 213,
-   "maintainer_comments": 2
+   "maintainer_comments": 2,
+   "scope": "instrumentation"
   },
   {
    "pr": 1050,
@@ -44,7 +48,8 @@
    "base_commit": "df034c1b8ead28e246cffe298eb2f060324b4dc8",
    "files": 3,
    "changed_lines": 143,
-   "maintainer_comments": 3
+   "maintainer_comments": 3,
+   "scope": "instrumentation"
   },
   {
    "pr": 1326,
@@ -53,7 +58,8 @@
    "base_commit": "e77cba21077b5495f7690a774cbb2bc43f0f0f98",
    "files": 9,
    "changed_lines": 305,
-   "maintainer_comments": 2
+   "maintainer_comments": 2,
+   "scope": "tool"
   },
   {
    "pr": 851,
@@ -62,7 +68,8 @@
    "base_commit": "6b37f50ad2a89d9cc88c07bff74a2427d8088a84",
    "files": 6,
    "changed_lines": 213,
-   "maintainer_comments": 3
+   "maintainer_comments": 3,
+   "scope": "instrumentation"
   },
   {
    "pr": 616,
@@ -71,7 +78,8 @@
    "base_commit": "5d80db178d06c17e8cc08cc20edc67d86976d04f",
    "files": 2,
    "changed_lines": 120,
-   "maintainer_comments": 13
+   "maintainer_comments": 13,
+   "scope": "tool"
   },
   {
    "pr": 809,
@@ -80,7 +88,8 @@
    "base_commit": "6934908a3134a49279c65e7087085d1d6a89e912",
    "files": 13,
    "changed_lines": 1030,
-   "maintainer_comments": 12
+   "maintainer_comments": 12,
+   "scope": "tool"
   },
   {
    "pr": 1278,
@@ -89,7 +98,8 @@
    "base_commit": "3d3d71e1786fb29120a0ce41913ae688fefe266d",
    "files": 4,
    "changed_lines": 68,
-   "maintainer_comments": 4
+   "maintainer_comments": 4,
+   "scope": "tool"
   },
   {
    "pr": 1090,
@@ -98,7 +108,8 @@
    "base_commit": "6b37f50ad2a89d9cc88c07bff74a2427d8088a84",
    "files": 18,
    "changed_lines": 649,
-   "maintainer_comments": 2
+   "maintainer_comments": 2,
+   "scope": "instrumentation"
   },
   {
    "pr": 1190,
@@ -107,7 +118,8 @@
    "base_commit": "ef44e91cb59d1ea7b55d8af23f3935042f447d0d",
    "files": 6,
    "changed_lines": 307,
-   "maintainer_comments": 2
+   "maintainer_comments": 2,
+   "scope": "tool"
   },
   {
    "pr": 506,
@@ -116,7 +128,8 @@
    "base_commit": "08d86e97620d08e99151aeefa634f2b83af0c8fc",
    "files": 2,
    "changed_lines": 36,
-   "maintainer_comments": 3
+   "maintainer_comments": 3,
+   "scope": "tool"
   },
   {
    "pr": 993,
@@ -125,7 +138,8 @@
    "base_commit": "884eb3cd444a4bd40a9a6a2842d46719f9a4c772",
    "files": 2,
    "changed_lines": 79,
-   "maintainer_comments": 3
+   "maintainer_comments": 3,
+   "scope": "tool"
   },
   {
    "pr": 669,
@@ -134,8 +148,10 @@
    "base_commit": "7a8b349a74d661f9becc36b90bf8af8914cf742d",
    "files": 9,
    "changed_lines": 212,
-   "maintainer_comments": 7
+   "maintainer_comments": 7,
+   "scope": "tool"
   }
  ],
- "skipped": []
+ "skipped": [],
+ "scope_rule": "instrumentation if more than half of changed files are under instrumentation/ or pkg/ (excluding pkg/hook), else tool. Assigned from file paths only, before reading any review comment."
 }
