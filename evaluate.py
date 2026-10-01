@@ -25,7 +25,7 @@ def gh_json(path):
 
 
 def collect(a):
-    runs = json.load(open(f'{D}/replay_{a.set}.json'))
+    runs = json.load(open(f'{D}/replay_{a.set}.json'))['runs']
     out = f'{D}/data/replay/{a.set}'
     os.makedirs(out, exist_ok=True)
     for r in runs:
@@ -39,7 +39,7 @@ def collect(a):
 
 
 def sheet(a):
-    runs = json.load(open(f'{D}/replay_{a.set}.json'))
+    runs = json.load(open(f'{D}/replay_{a.set}.json'))['runs']
     rows = [c for f in glob.glob(f'{D}/data/rc_*.json') for c in json.load(open(f))]
     rng = random.Random(f'{a.set}-blind')
     items, key = [], {}
@@ -72,7 +72,7 @@ def sheet(a):
 
 
 def score(a):
-    runs = json.load(open(f'{D}/replay_{a.set}.json'))
+    runs = json.load(open(f'{D}/replay_{a.set}.json'))['runs']
     key = json.load(open(f'{D}/score_{a.set}_key.json'))
     items = list(csv.DictReader(open(f'{D}/score_{a.set}.csv')))
     missing = [i['id'] for i in items if not i['label']]

@@ -113,7 +113,7 @@ def main():
                            '-f', 'reviewers[]=copilot-pull-request-reviewer[bot]')
                 log.append(rec)
     out = f'{D}/replay_{a.set}.json'
-    json.dump(log, open(out, 'w'), indent=1)
+    json.dump({'guidance_ref': a.guidance_ref, 'guidance_blobs': blobs, 'runs': log}, open(out, 'w'), indent=1)
     print(('pushed' if a.push else 'dry run,') + f' {len(log)} replays -> {out}')
 
 
