@@ -1,0 +1,141 @@
+{
+ "seed": 1411,
+ "picked": [
+  {
+   "pr": 1320,
+   "title": "fix(instrumentation): avoid false SSE detection",
+   "review_commit": "ffdf472290c33abeb02780bbc498bc9d27eb31c8",
+   "base_commit": "024202fac70d2bd4cfefc426c6e0515870617e45",
+   "files": 9,
+   "changed_lines": 42,
+   "maintainer_comments": 2
+  },
+  {
+   "pr": 1178,
+   "title": "fix(instrumentation/kafka-go): mark async producer spans and log otherwise-invisible async failures",
+   "review_commit": "d820bf85e7fa400a32d08f0bbbd7a36339e84088",
+   "base_commit": "3e803e7666aaae2370532f37c608f6622f8a0f68",
+   "files": 5,
+   "changed_lines": 221,
+   "maintainer_comments": 9
+  },
+  {
+   "pr": 1098,
+   "title": "fix(redis): instrument ring shards created before the hook runs",
+   "review_commit": "7f4ac721e8e5fc9fd2238f5c402dfd91a01d1189",
+   "base_commit": "e9c8e8e8047c2d8b93b77145454e4166a57cb3e1",
+   "files": 3,
+   "changed_lines": 220,
+   "maintainer_comments": 5
+  },
+  {
+   "pr": 1092,
+   "title": "fix(redis): redact AUTH/HELLO credentials in db.query.text",
+   "review_commit": "478c818f2dc9597e2486964cbf6320a73e3a5e25",
+   "base_commit": "128eb42893e28e5f2297c1a76324173415a85084",
+   "files": 3,
+   "changed_lines": 213,
+   "maintainer_comments": 2
+  },
+  {
+   "pr": 1050,
+   "title": "fix(instrumentation/net/http): http.ServeFile loses the sendfile fast path on instrumented servers",
+   "review_commit": "7dea611f1311ed3291b24f78522d20b95000460b",
+   "base_commit": "df034c1b8ead28e246cffe298eb2f060324b4dc8",
+   "files": 3,
+   "changed_lines": 143,
+   "maintainer_comments": 3
+  },
+  {
+   "pr": 1326,
+   "title": "fix(tool): FuncArgumentOfType fails on aliased imports in call and raw rules",
+   "review_commit": "41a793fbbcf69fdecc1b76b3fbc3dc76a3fecb83",
+   "base_commit": "e77cba21077b5495f7690a774cbb2bc43f0f0f98",
+   "files": 9,
+   "changed_lines": 305,
+   "maintainer_comments": 2
+  },
+  {
+   "pr": 851,
+   "title": "feat(instrumentation/openai): record gen_ai.client.token.usage",
+   "review_commit": "108af865f40f75086c4d70fc536129d58e4a55b0",
+   "base_commit": "6b37f50ad2a89d9cc88c07bff74a2427d8088a84",
+   "files": 6,
+   "changed_lines": 213,
+   "maintainer_comments": 3
+  },
+  {
+   "pr": 616,
+   "title": "feat(tool): support projects using vendoring",
+   "review_commit": "448355a1d865e9672ea2e665a0c2b3595a1cae10",
+   "base_commit": "5d80db178d06c17e8cc08cc20edc67d86976d04f",
+   "files": 2,
+   "changed_lines": 120,
+   "maintainer_comments": 13
+  },
+  {
+   "pr": 809,
+   "title": "feat(instrumentation): add auto-instrumentation for gocql Cassandra driver",
+   "review_commit": "426935298071089c90e933d57236cedbb08ede53",
+   "base_commit": "6934908a3134a49279c65e7087085d1d6a89e912",
+   "files": 13,
+   "changed_lines": 1030,
+   "maintainer_comments": 12
+  },
+  {
+   "pr": 1278,
+   "title": "fix(tool): close the output file via defer in ast and importcfg writeFile",
+   "review_commit": "2fcbdb5d579bb72eb1d01750e110128dd3e911d8",
+   "base_commit": "3d3d71e1786fb29120a0ce41913ae688fefe266d",
+   "files": 4,
+   "changed_lines": 68,
+   "maintainer_comments": 4
+  },
+  {
+   "pr": 1090,
+   "title": "fix(instrumentation/openai): record cached prompt tokens",
+   "review_commit": "1c0d7794ab8a435c6e6caed0772b3a0df8faebb8",
+   "base_commit": "6b37f50ad2a89d9cc88c07bff74a2427d8088a84",
+   "files": 18,
+   "changed_lines": 649,
+   "maintainer_comments": 2
+  },
+  {
+   "pr": 1190,
+   "title": "feat(tool): enforce test file naming conventions in CI",
+   "review_commit": "2d9cf0590b774530345d5e5a98ca25d99f9bf74a",
+   "base_commit": "ef44e91cb59d1ea7b55d8af23f3935042f447d0d",
+   "files": 6,
+   "changed_lines": 307,
+   "maintainer_comments": 2
+  },
+  {
+   "pr": 506,
+   "title": "feat(setup): warn when no instrumentation rules match",
+   "review_commit": "96cc134612965a7f6d857a0e3f27653281ea73cd",
+   "base_commit": "08d86e97620d08e99151aeefa634f2b83af0c8fc",
+   "files": 2,
+   "changed_lines": 36,
+   "maintainer_comments": 3
+  },
+  {
+   "pr": 993,
+   "title": "test(testutil): harden FreePort against close/rebind race conditions",
+   "review_commit": "baf92381adf1401305dc8876eaab6bfd04fecaf9",
+   "base_commit": "884eb3cd444a4bd40a9a6a2842d46719f9a4c772",
+   "files": 2,
+   "changed_lines": 79,
+   "maintainer_comments": 3
+  },
+  {
+   "pr": 669,
+   "title": "chore(test): add e2e test for gin cross-process tracing",
+   "review_commit": "25cf9a3d4e6b328bde8112e37e36c2b59afe9773",
+   "base_commit": "7a8b349a74d661f9becc36b90bf8af8914cf742d",
+   "files": 9,
+   "changed_lines": 212,
+   "maintainer_comments": 7
+  }
+ ],
+ "skipped": []
+}
