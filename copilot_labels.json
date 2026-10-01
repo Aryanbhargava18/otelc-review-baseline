@@ -1,0 +1,1685 @@
+[
+ {
+  "i": 0,
+  "pr": 464,
+  "path": "test/testutil/latestlib.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "This helper bumps every direct requirement, not just libraries we actually instrument. For example, `test/apps/grpcserver/go.mod` has a direct `google.golang.org/protobuf` requirement but we have no p"
+ },
+ {
+  "i": 1,
+  "pr": 464,
+  "path": "test/latestlibbuild/latestlibbuild_test.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "Running these subtests in parallel can make the suite flaky because some apps depend on other app modules via local `replace` directives. In particular, `grpcclient` replaces `../grpcserver`, so its b"
+ },
+ {
+  "i": 2,
+  "pr": 464,
+  "path": ".github/workflows/test-latestlibbuild.yaml",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "The rest of the test workflows fan out across Ubuntu, macOS, and Windows, but this required check only runs on `ubuntu-latest`. If a future dependency release breaks compilation behind OS-specific bui"
+ },
+ {
+  "i": 3,
+  "pr": 464,
+  "path": "Makefile",
+  "label": "wrong",
+  "basis": "reply",
+  "note": "intentional: excluded from make test",
+  "excerpt": "This adds a fourth test category and a required CI workflow, but `make test` still doesn't invoke `test-latestlibbuild` (`Makefile:388-389`). Contributors following the standard local test command wil"
+ },
+ {
+  "i": 4,
+  "pr": 464,
+  "path": "docs/testing.md",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "The range syntax in this example doesn't match what the rule parser accepts. Our YAML uses `start,end` / `vX,` strings (see `docs/rules.md` and `tool/internal/setup/match.go`), so telling maintainers "
+ },
+ {
+  "i": 5,
+  "pr": 463,
+  "path": "test/testutil/readiness.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "`WaitForSpans` calls `AllSpans(c.GetTraces())`, but `Collector.GetTraces()` releases the mutex before the returned `ptrace.Traces` is iterated. Since the collector appends to the same underlying pdata"
+ },
+ {
+  "i": 6,
+  "pr": 463,
+  "path": "test/testutil/readiness_test.go",
+  "label": "noise",
+  "basis": "judged",
+  "note": "weak-assertion nit",
+  "excerpt": "This test aims to ensure `WaitForSpans` returns promptly when spans are already present, but the assertion only checks it returns before the full `defaultSpanFlushTimeout` (3s). That still passes even"
+ },
+ {
+  "i": 7,
+  "pr": 470,
+  "path": "pkg/instrumentation/databasesql/parse.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "In the libpq key/value fallback, the endpoint is built via `host + \":\" + port`. This produces an invalid host:port string for IPv6 hosts (e.g., `::1`), which will later fail `net.SplitHostPort` and dr"
+ },
+ {
+  "i": 8,
+  "pr": 464,
+  "path": "test/testutil/latestlib.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "The doc comment says this returns \u201cthird-party module paths\u201d, but the rule YAMLs also contain stdlib/internal targets like `net/http`, `database/sql`, `runtime`, and `main`. This helper actually retur"
+ },
+ {
+  "i": 9,
+  "pr": 464,
+  "path": "test/testutil/latestlib.go",
+  "label": "noise",
+  "basis": "judged",
+  "note": "debug-output nicety",
+  "excerpt": "`cmd.Output()` drops stdout/stderr context when the command fails, making failures hard to debug (the error is usually just `exit status 1`). Consider using `CombinedOutput()` and including the output"
+ },
+ {
+  "i": 10,
+  "pr": 464,
+  "path": "test/testutil/latestlib.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "Local `replace` detection treats paths as local only if they start with `.` or `/`, which misses Windows absolute paths (e.g. `C:\\...`). Using `filepath.IsAbs(r.New.Path)` (in addition to the relative"
+ },
+ {
+  "i": 11,
+  "pr": 464,
+  "path": "docs/testing.md",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "This description says LatestLibBuild bumps \u201call direct ... requires\u201d, but the test now only bumps direct requirements whose module path matches an instrumentation rule `target:` (via `DiscoverInstrume"
+ },
+ {
+  "i": 12,
+  "pr": 484,
+  "path": "test/testutil/spans.go",
+  "label": "noise",
+  "basis": "judged",
+  "note": "t.Helper nit",
+  "excerpt": "Consider calling t.Helper() at the start of RequireSpan so failures are attributed to the calling test line (as done in other test helpers like WaitForTCP/WaitForSpanFlush), which would further improv"
+ },
+ {
+  "i": 13,
+  "pr": 487,
+  "path": "README.md",
+  "label": "noise",
+  "basis": "judged",
+  "note": "calendar URL",
+  "excerpt": "The Google Calendar URL uses the `/calendar/u/0/embed` form, which is primarily intended for iframe embedding and includes a user index (`u/0`). For a more stable/shareable link, consider switching to"
+ },
+ {
+  "i": 14,
+  "pr": 492,
+  "path": "tool/internal/rule/call_rule.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "The comment for `InstCallRule.Path` says this is a \"module path\", but the loader (`listRuleFiles` in `tool/internal/instrument/apply_file.go`) explicitly supports both local filesystem paths (when the"
+ },
+ {
+  "i": 15,
+  "pr": 492,
+  "path": "docs/rules.md",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "`path` is documented as a \"Module path\" here, but `listRuleFiles` supports both local filesystem paths (when the directory exists) and module paths. Please clarify in the field description that `path`"
+ },
+ {
+  "i": 16,
+  "pr": 492,
+  "path": "tool/internal/instrument/apply_call.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "The generated aux filename suffix is derived from `ruleName + \":\" + file`, where `file` can be an absolute path (especially when `rulePath` is a module path resolved under the build temp dir). This ma"
+ },
+ {
+  "i": 17,
+  "pr": 492,
+  "path": "tool/internal/instrument/apply_call.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "`loadOneAuxFile` decides whether a file is a hook by doing `strings.Contains(content, \"//go:build ignore\")`. This will also match cases where that text appears later in the file (e.g., in a comment or"
+ },
+ {
+  "i": 18,
+  "pr": 492,
+  "path": "tool/internal/instrument/instrument.go",
+  "label": "noise",
+  "basis": "judged",
+  "note": "PR description mismatch",
+  "excerpt": "PR description mentions updating `tool/internal/instrument/testdata/golden/call-rule-with-import/rules.yml` to add `path`, but that file currently still has no `path` field. Either update the PR descr"
+ },
+ {
+  "i": 19,
+  "pr": 483,
+  "path": "tool/internal/setup/setup.go",
+  "label": "noise",
+  "basis": "judged",
+  "note": "nil vs len nit",
+  "excerpt": "`pkg.Errors` is a slice; checking `pkg.Errors != nil` can incorrectly treat a package as errored even when the slice is empty-but-non-nil. Use `len(pkg.Errors) > 0` (consistent with other pkgload call"
+ },
+ {
+  "i": 20,
+  "pr": 483,
+  "path": "tool/internal/setup/setup.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "The directory consistency check for file targets compares `filepath.Dir` on raw arguments. This rejects equivalent paths like `cmd/main.go` vs `./cmd/util.go` even though they are the same directory a"
+ },
+ {
+  "i": 21,
+  "pr": 483,
+  "path": "tool/internal/setup/setup.go",
+  "label": "wrong",
+  "basis": "reply",
+  "note": "maintainers: not true / -C unsupported then",
+  "excerpt": "When appending `otelc.runtime.go` for file-target builds, the path is derived from `filepath.Dir(fileTargets[0])` using the raw CLI argument. This will be wrong when `go build -C <dir>` is used (file "
+ },
+ {
+  "i": 22,
+  "pr": 483,
+  "path": "tool/internal/setup/setup.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "If the user explicitly provided build targets (packages or .go files) but all loaded packages are filtered out (e.g., due to `pkg.Errors`), `getBuildPackages` currently returns an empty slice with no "
+ },
+ {
+  "i": 23,
+  "pr": 502,
+  "path": "tool/internal/setup/sync.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "Go directives commonly use language-version form such as `go 1.21`, and `semver.IsValid(\"v1.21\")` is false because module semver requires a patch component. This means a bump from `1.21` (as used in e"
+ },
+ {
+  "i": 24,
+  "pr": 501,
+  "path": "pkg/instrumentation/gin/server/context_hook.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "The idempotency guard is set (c.Set(routeSetKey,...)) before verifying there is a recording span. If SpanFromContext returns a non-recording/noop span (e.g., net/http instrumentation disabled and a us"
+ },
+ {
+  "i": 25,
+  "pr": 501,
+  "path": "pkg/instrumentation/gin/server/context_hook_test.go",
+  "label": "noise",
+  "basis": "judged",
+  "note": "case nit",
+  "excerpt": "Repository docs/code expect OTEL_GO_ENABLED_INSTRUMENTATIONS values to be lowercase (the list is lowercased during parsing). For consistency with other tests and documentation, prefer using \"gin\" inst"
+ },
+ {
+  "i": 26,
+  "pr": 501,
+  "path": "pkg/instrumentation/gin/server/context_hook_test.go",
+  "label": "noise",
+  "basis": "judged",
+  "note": "case nit",
+  "excerpt": "Repository docs/code expect OTEL_GO_DISABLED_INSTRUMENTATIONS values to be lowercase (the list is lowercased during parsing). For consistency with other tests and documentation, prefer using \"gin\" ins"
+ },
+ {
+  "i": 27,
+  "pr": 499,
+  "path": "tool/cmd/main.go",
+  "label": "noise",
+  "basis": "reply",
+  "note": "PR description; scope was reduced on purpose",
+  "excerpt": "The PR title/description says debug logs are teed to stderr, but the handler still writes only to `logFile`. With this implementation `otelc --debug ...` enables debug records in `.otelc-build/debug.l"
+ },
+ {
+  "i": 28,
+  "pr": 528,
+  "path": "tool/cmd/otelc/main.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "initLogger opens debug.log (via os.OpenFile later in this function) but never closes the file. With the new unit tests using t.TempDir(), this is likely to cause Windows CI failures because the temp d"
+ },
+ {
+  "i": 29,
+  "pr": 540,
+  "path": "test/testutil/fixture.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "`SetEnv` reimplements prefix matching with a length check and slice comparison. Using `strings.HasPrefix(e, prefix)` would be more idiomatic and harder to subtly break (e.g., if the loop body grows)."
+ },
+ {
+  "i": 30,
+  "pr": 540,
+  "path": "test/integration/main_test.go",
+  "label": "noise",
+  "basis": "reply",
+  "note": "maintainer: keep it simple",
+  "excerpt": "When one app's build fails, `buildAll` records the first error but keeps waiting for every other in-flight build to finish (and starts no cancellation). Consider creating a `context.WithCancel` derive"
+ },
+ {
+  "i": 31,
+  "pr": 540,
+  "path": "test/integration/main_test.go",
+  "label": "noise",
+  "basis": "reply",
+  "note": "maintainer: YAGNI",
+  "excerpt": "`TestMain` blindly treats every directory under `test/apps` as a buildable Go module. If someone later adds a non-app helper directory there (e.g., shared testdata, protos, fixtures), `otelc go build`"
+ },
+ {
+  "i": 32,
+  "pr": 540,
+  "path": "test/integration/main_test.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "`docs/testing.md` describes the integration test flow as \"build the test application with compile-time instrumentation\" inside each test. With this PR, building moves to `TestMain` and the per-test st"
+ },
+ {
+  "i": 33,
+  "pr": 558,
+  "path": ".github/workflows/test-latestlibrun.yaml",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "`notify-on-failure` job overrides the workflow's default `read-all` permissions; with only `issues: write` it loses `contents: read`, so `actions/checkout` will fail with insufficient permissions."
+ },
+ {
+  "i": 34,
+  "pr": 558,
+  "path": ".github/scripts/latestlibrun-issue.sh",
+  "label": "wrong",
+  "basis": "reply",
+  "note": "label already exists",
+  "excerpt": "`gh issue create --label` fails if the label doesn't already exist. The `latestlibrun-failure` label is not present in the repo, so the notify script will fail on the first failure instead of opening "
+ },
+ {
+  "i": 35,
+  "pr": 558,
+  "path": "Makefile",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "`test-latestlibrun` uses different `go test` flags than the other test targets (missing `-shuffle=on`, `-timeout`, and `-json`). This also contradicts `docs/testing.md` which states test commands use "
+ },
+ {
+  "i": 36,
+  "pr": 558,
+  "path": "test/latestlibrun/latestlibrun_test.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "This `os.Stat` guard silently skips a test app on *any* stat error (including permission errors / transient filesystem issues). It should only skip when `go.mod` is missing; otherwise fail the test so"
+ },
+ {
+  "i": 37,
+  "pr": 558,
+  "path": ".github/scripts/latestlibrun-issue.sh",
+  "label": "wrong",
+  "basis": "reply",
+  "note": "duplicate of 34, label exists",
+  "excerpt": "`gh issue create --label \"${LABEL}\"` will fail if the label doesn't already exist. The `latestlibrun-failure` label is not present in the repo today, so the first failing scheduled run would likely er"
+ },
+ {
+  "i": 38,
+  "pr": 558,
+  "path": "docs/testing.md",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "The docs say LatestLibRun runs on a daily schedule, but the workflow cron (`45 5 * * 1`) is weekly. Please align the docs with the actual schedule (or update the cron if daily is intended)."
+ },
+ {
+  "i": 39,
+  "pr": 381,
+  "path": "tool/internal/setup/filter.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "`buildFile` only treats `all-of` as present when `len(def.AllOf) > 0`. If a user writes `all-of: []` (empty but explicitly present), this code will ignore the combinator entirely: sibling predicates w"
+ },
+ {
+  "i": 40,
+  "pr": 381,
+  "path": "tool/internal/instrument/instrument_test.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "`fileFilterMatches` currently implements a permissive subset of `setup.buildFile` semantics: it (1) only treats `all-of` as present when `len(AllOf) > 0` (so `all-of: []` is ignored), and (2) doesn\u2019t "
+ },
+ {
+  "i": 41,
+  "pr": 385,
+  "path": "tool/internal/setup/filter.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "`buildFile` treats combinator presence via non-nil slices (so `one-of: []` is still \u201cpresent\u201d), but the sibling-predicate guard in the `all-of` branch currently checks `len(def.OneOf) > 0`. This means"
+ },
+ {
+  "i": 42,
+  "pr": 385,
+  "path": "tool/internal/instrument/instrument_test.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "`fileFilterMatches` is intended to mirror `setup.buildFile` semantics, including rejecting combinators that are combined with sibling predicates (which `setup.buildFile` treats as a build-time error)."
+ },
+ {
+  "i": 43,
+  "pr": 385,
+  "path": "tool/internal/setup/filter.go",
+  "label": "noise",
+  "basis": "reply",
+  "note": "PR description",
+  "excerpt": "PR description lists changed files under `tool/internal/filter/...`, but the implementation/tests in this PR are under `tool/internal/setup/...` (plus golden fixtures under `tool/internal/instrument/."
+ },
+ {
+  "i": 44,
+  "pr": 386,
+  "path": "tool/internal/setup/filter.go",
+  "label": "wrong",
+  "basis": "reply",
+  "note": "already correct",
+  "excerpt": "In the all-of branch, the sibling-predicate guard uses `len(def.OneOf) > 0`, which does *not* detect an explicit `one-of: []` (non-nil empty slice). That contradicts the \"presence via non-nil slice\" s"
+ },
+ {
+  "i": 45,
+  "pr": 386,
+  "path": "tool/internal/setup/filter.go",
+  "label": "wrong",
+  "basis": "reply",
+  "note": "already correct",
+  "excerpt": "The `where.file.not` sibling check uses `len(def.AllOf) > 0` / `len(def.OneOf) > 0`, but combinator presence is defined by a non-nil slice (even when empty). Using `!= nil` keeps the check consistent "
+ },
+ {
+  "i": 46,
+  "pr": 561,
+  "path": "tool/internal/setup/match.go",
+  "label": "wrong",
+  "basis": "reply",
+  "note": "Go 1.25 per-iteration loop vars; copyloopvar enabled",
+  "excerpt": "The goroutine in the `for _, dep := range deps` loop closes over the loop variable `dep`, so all goroutines may observe the same (last) dependency. This can cause rules to be matched against the wrong"
+ },
+ {
+  "i": 47,
+  "pr": 561,
+  "path": "tool/internal/rule/target_glob.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "This comment says `path.Match` catches malformed bracket expressions like `[z-a]`, but `path.Match` only errors on syntactically malformed patterns (e.g., unclosed `[`); reversed ranges typically don'"
+ },
+ {
+  "i": 48,
+  "pr": 561,
+  "path": "tool/internal/setup/match.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "`target` is documented as required (docs/rules.md) but `parseRuleFromYaml` currently doesn't reject an empty/missing target. With the new glob support, this contradicts the stated goal of failing loud"
+ },
+ {
+  "i": 49,
+  "pr": 561,
+  "path": "tool/internal/rule/target_glob.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "This comment claims empty targets are rejected by the rule constructors, but the current `NewInst*Rule` validators don't check `InstBaseRule.Target`. Unless another layer enforces it, an empty/missing"
+ },
+ {
+  "i": 50,
+  "pr": 562,
+  "path": "tool/internal/instrument/instrument_test.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "fileFilterMatches is intended to mirror setup.buildFile, but it currently skips buildFile\u2019s upfront validations (unsupported all-of/one-of/not composition and the has_recv-without-has_func check). Tha"
+ },
+ {
+  "i": 51,
+  "pr": 562,
+  "path": "tool/internal/instrument/instrument_test.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "The is_test branch hard-codes the \".test\" suffix. Since this function is explicitly a mirror of setup.buildFile (which uses a named constant), using a local constant here reduces the risk of drift if "
+ },
+ {
+  "i": 52,
+  "pr": 562,
+  "path": "tool/internal/instrument/testdata/golden/is-test-filter-no-match/source.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "This comment describes `is_test: false` / production-only behavior, but in this fixture the rule is `is_test: true` (test-only). Updating the comment avoids confusing future readers and keeps the fixt"
+ },
+ {
+  "i": 53,
+  "pr": 562,
+  "path": "tool/internal/instrument/testdata/golden/is-test-filter-no-match/is_test_filter_no_match.main.go.golden",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "This golden output is meant to be byte-identical to source.go for the no-match case, but its comment currently describes `is_test: false` / production-only behavior while the fixture\u2019s rule is `is_tes"
+ },
+ {
+  "i": 54,
+  "pr": 562,
+  "path": "tool/internal/instrument/testdata/golden/is-test-filter-no-match/rules.yml",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "rules.yml references `testdata/golden/is-test-filter-no-match/hooks`, but this fixture directory does not exist. If `is_test: true` ever matches (i.e., when compiling a `.test` import path), this rule"
+ },
+ {
+  "i": 55,
+  "pr": 560,
+  "path": "tool/internal/rule/func_rule.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "`InstFuncRule.String()` builds the do-sequence discriminator by appending `_<index>`. This can deterministically collide with an existing (non-do) rule whose name already includes that suffix (e.g., r"
+ },
+ {
+  "i": 56,
+  "pr": 560,
+  "path": "tool/internal/rule/func_rule.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "sigKey claims its separators cannot appear in Go type strings, but signature filters accept arbitrary type-name strings. Commas can appear in function types (e.g., \"func(int, int)\"), and '|' can appea"
+ },
+ {
+  "i": 57,
+  "pr": 560,
+  "path": "tool/internal/instrument/apply_func.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "The duplicate-rule early return happens before addRuleImports. If two rules share the same content identity but declare different `imports`, the second rule will be skipped and its imports will never "
+ },
+ {
+  "i": 58,
+  "pr": 560,
+  "path": "tool/internal/rule/normalize.go",
+  "label": "noise",
+  "basis": "judged",
+  "note": "comment wording",
+  "excerpt": "This comment references InstFuncRule.String, but name generation now disambiguates using InstFuncRule.Identity(). Referring to String() (which returns the rule name) is misleading for readers trying t"
+ },
+ {
+  "i": 59,
+  "pr": 560,
+  "path": "tool/internal/rule/normalize.go",
+  "label": "noise",
+  "basis": "judged",
+  "note": "comment wording",
+  "excerpt": "The comment says omitting index 0 preserves \u201chistorical generated names\u201d, but trampoline/HookContext suffixes are now content-derived via Identity(), so names change regardless. Keeping index 0 absent"
+ },
+ {
+  "i": 60,
+  "pr": 560,
+  "path": "tool/internal/rule/func_rule_test.go",
+  "label": "noise",
+  "basis": "judged",
+  "note": "comment wording",
+  "excerpt": "This comment implies that omitting application_index for do[0] preserves legacy generated names, but suffixes are now derived from rule content (Identity) so names are expected to change. Consider rew"
+ },
+ {
+  "i": 61,
+  "pr": 413,
+  "path": "instrumentation/log/slog/slog_hook.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "Hook parameter index is off by one: for slog.Logger.log(ctx, level, msg, args...), index 0 is receiver, 1 ctx, 2 level, 3 msg. Setting param 4 attempts to replace the variadic args (type []any) with a"
+ },
+ {
+  "i": 62,
+  "pr": 413,
+  "path": "instrumentation/log/slog/slog_hook_test.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "These tests currently disable the instrumentation (so they only exercise the first early-return) and assert against param index 4. For slog.Logger.log, the message is param index 3 (after the receiver"
+ },
+ {
+  "i": 63,
+  "pr": 413,
+  "path": "test/apps/logslog/main.go",
+  "label": "noise",
+  "basis": "judged",
+  "note": "test app nit",
+  "excerpt": "span.End() is called twice (defer span.End() and an explicit call at the end). This is redundant and can lead to confusing output or duplicate export depending on SDK behavior; keep only the deferred "
+ },
+ {
+  "i": 64,
+  "pr": 413,
+  "path": "test/apps/logslogrus/main.go",
+  "label": "noise",
+  "basis": "judged",
+  "note": "test app nit",
+  "excerpt": "span.End() is called twice (defer span.End() and an explicit call at the end). This is redundant and can lead to confusing output or duplicate export depending on SDK behavior; keep only the deferred "
+ },
+ {
+  "i": 65,
+  "pr": 413,
+  "path": "instrumentation/github.com/sirupsen/logrus/logrus_hook.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "hookInitMap/fieldInitMap hold strong references to *logrus.Logger instances for the lifetime of the process. If an application creates many short-lived loggers, these maps can grow without bound even "
+ },
+ {
+  "i": 66,
+  "pr": 561,
+  "path": "tool/internal/instrument/instrument_test.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "`targetMatches` currently returns `true` when `target` is missing/not a string, and it also returns `true` for *all* exact (non-glob) targets. That makes the golden harness apply rules even when their"
+ },
+ {
+  "i": 67,
+  "pr": 561,
+  "path": "tool/internal/rule/target_glob.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "This glob-matching branch can become exponentially expensive for patterns containing multiple \"**\" segments (e.g. \"**/**/**\"), because each \"**\" tries every remaining suffix and recurses. Since rules "
+ },
+ {
+  "i": 68,
+  "pr": 561,
+  "path": "tool/internal/setup/match.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "When globRules is non-empty this always allocates a new slice and copies the exact-match rules, even if no glob rule matches this dependency. That adds per-dependency allocations on the hot path. You "
+ },
+ {
+  "i": 69,
+  "pr": 562,
+  "path": "tool/internal/setup/filter.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "buildFile\u2019s combinator branches (all-of / one-of / not) use hasLeafPredicate(def) to detect illegal sibling leaf predicates. hasLeafPredicate currently doesn\u2019t consider IsTest, so a spec like `file: {"
+ },
+ {
+  "i": 70,
+  "pr": 562,
+  "path": "tool/internal/instrument/testdata/golden/is-test-filter-true-match/hook.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "The comment mentions \u201c.test packages\u201d, but the implementation gates on whether the compile is a test build (presence of _test.go / _testmain.go in the source set), not an import-path \u201c.test\u201d suffix. U"
+ },
+ {
+  "i": 71,
+  "pr": 562,
+  "path": "tool/internal/instrument/testdata/golden/is-test-filter-no-match/source.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "This comment says the is_test:true rule \u201cmatches only the .test binary\u2019s package\u201d, but the implementation defines test-ness via the source set (_test.go / _testmain.go). In particular, is_test:true ma"
+ },
+ {
+  "i": 72,
+  "pr": 562,
+  "path": "tool/internal/instrument/testdata/golden/is-test-filter-no-match/hook.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "The wording \u201c.test packages\u201d is misleading here: `is_test` is evaluated from the compile\u2019s source set (whether _test.go / _testmain.go inputs are present), not from an import-path \u201c.test\u201d suffix. Adju"
+ },
+ {
+  "i": 73,
+  "pr": 562,
+  "path": "tool/internal/instrument/testdata/golden/is-test-filter-match/source.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "This comment ties `is_test: false` to the \u201c.test binary\u201d specifically, but the predicate is evaluated via test-build detection from the source set (_test.go / _testmain.go). Consider rewording to \u201ctes"
+ },
+ {
+  "i": 74,
+  "pr": 562,
+  "path": "tool/internal/instrument/testdata/golden/is-test-filter-match/hook.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "This comment says the filter \u201cscopes this rule to .test packages\u201d, but is_test is evaluated from the compile\u2019s source set (presence of _test.go / _testmain.go). Rewording to \u201ctest builds\u201d avoids imply"
+ },
+ {
+  "i": 75,
+  "pr": 562,
+  "path": "tool/internal/setup/filter_test.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "There\u2019s no test coverage for the intended \u201ccombinator owns the node\u201d rule with `is_test` as a sibling leaf (e.g., `file: { all-of: [...], is_test: true }`). Given buildFile\u2019s combinator guards are imp"
+ },
+ {
+  "i": 76,
+  "pr": 562,
+  "path": "tool/internal/setup/match.go",
+  "label": "noise",
+  "basis": "reply",
+  "note": "PR description",
+  "excerpt": "PR description says `is_test` matches on the `.test` import-path suffix, but the implementation actually derives test-ness from the compile\u2019s source set (`_test.go` / `_testmain.go`) via isTestBuild +"
+ },
+ {
+  "i": 77,
+  "pr": 617,
+  "path": "tool/internal/setup/sync.go",
+  "label": "wrong",
+  "basis": "reply",
+  "note": "maintainer wants the stdout warning",
+  "excerpt": "Avoid writing version bump warnings directly to stdout here; SetupPhase already logs via slog. Printing to stdout duplicates messages and can interfere with tools that expect structured output or clea"
+ },
+ {
+  "i": 78,
+  "pr": 617,
+  "path": "tool/internal/setup/sync.go",
+  "label": "wrong",
+  "basis": "reply",
+  "note": "same as 77",
+  "excerpt": "Same as above: avoid emitting the dependency bump message to stdout; rely on the logger warning only to prevent duplicate/unstructured output."
+ },
+ {
+  "i": 79,
+  "pr": 617,
+  "path": "tool/internal/setup/store.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "The error text says \"module path\" but `goPath` here is an import path (from `rule.Path`). This wording is misleading when troubleshooting resolution failures."
+ },
+ {
+  "i": 80,
+  "pr": 617,
+  "path": "tool/internal/instrument/apply_file.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "This wraps an error from listing `rule.ResolvedPath`, but the message reports `rule.Path` instead. When resolution fails or points somewhere unexpected, the current error doesn\u2019t show the directory th"
+ },
+ {
+  "i": 81,
+  "pr": 617,
+  "path": "tool/internal/setup/add.go",
+  "label": "noise",
+  "basis": "reply",
+  "note": "trivial wording",
+  "excerpt": "The inline comment says \"global constant map\", but `requiredImports` is a mutable package-level `var` map. This is minor, but the wording is inaccurate."
+ },
+ {
+  "i": 82,
+  "pr": 604,
+  "path": "instrumentation/github.com/openai/openai-go/v3/middleware.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "Reading the request body via io.LimitReader + io.ReadAll and then replacing req.Body with only the captured bytes truncates requests larger than maxRequestBodySize (and closing the original body can a"
+ },
+ {
+  "i": 83,
+  "pr": 604,
+  "path": "instrumentation/github.com/openai/openai-go/v3/middleware.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "handleNonStreamingResponse reads a limited prefix of the response and then replaces resp.Body with only that prefix, truncating responses larger than maxResponseBodySize. This changes application beha"
+ },
+ {
+  "i": 84,
+  "pr": 604,
+  "path": "instrumentation/github.com/openai/openai-go/v3/middleware.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "This middleware is instrumenting an outgoing HTTP client operation, but the span is started with SpanKindInternal. The project\u2019s documented pattern for client instrumentation uses SpanKindClient (see "
+ },
+ {
+  "i": 85,
+  "pr": 604,
+  "path": "instrumentation/github.com/openai/openai-go/v3/middleware.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "Unlike the v1/v2 middlewares, the v3 middleware does not call pkg/runtime.SuppressHTTPClientInstrumentation(ctx) before issuing the request. With the new suppression check in instrumentation/net/http/"
+ },
+ {
+  "i": 86,
+  "pr": 604,
+  "path": "instrumentation/github.com/openai/openai-go/v2/middleware.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "Reading the request body via io.LimitReader + io.ReadAll and then replacing req.Body with only the captured bytes truncates requests larger than maxRequestBodySize (and closing the original body can a"
+ },
+ {
+  "i": 87,
+  "pr": 604,
+  "path": "instrumentation/github.com/openai/openai-go/middleware.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "Reading the request body via io.LimitReader + io.ReadAll and then replacing req.Body with only the captured bytes truncates requests larger than maxRequestBodySize (and closing the original body can a"
+ },
+ {
+  "i": 88,
+  "pr": 604,
+  "path": "instrumentation/github.com/openai/openai-go/middleware.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "handleNonStreamingResponse reads a limited prefix of the response and then replaces resp.Body with only that prefix, truncating responses larger than maxResponseBodySize. This changes application beha"
+ },
+ {
+  "i": 89,
+  "pr": 604,
+  "path": "instrumentation/github.com/openai/openai-go/v2/middleware.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "handleNonStreamingResponse reads a limited prefix of the response and then replaces resp.Body with only that prefix, truncating responses larger than maxResponseBodySize. This changes application beha"
+ },
+ {
+  "i": 90,
+  "pr": 604,
+  "path": "instrumentation/github.com/openai/openai-go/v2/middleware.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "This middleware is instrumenting an outgoing HTTP client operation, but the span is started with SpanKindInternal. The project\u2019s documented pattern for client instrumentation uses SpanKindClient (see "
+ },
+ {
+  "i": 91,
+  "pr": 604,
+  "path": "instrumentation/github.com/openai/openai-go/middleware.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "This middleware is instrumenting an outgoing HTTP client operation, but the span is started with SpanKindInternal. The project\u2019s documented pattern for client instrumentation uses SpanKindClient (see "
+ },
+ {
+  "i": 92,
+  "pr": 528,
+  "path": "tool/cmd/otelc/main.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "`closeLogger` relies on retrieving the log file from `context.Context`, but this repo already notes that `cli/v3` After hooks may not receive the context returned from Before hooks (see profiling.go)."
+ },
+ {
+  "i": 93,
+  "pr": 528,
+  "path": "tool/cmd/otelc/main.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "`initLogger` opens `logFile` later in the function; if a subsequent error path is taken (e.g., `os.Setenv(OTELC_DEBUG, \"1\")` failing when `--debug` is set), the function returns without closing the op"
+ },
+ {
+  "i": 94,
+  "pr": 612,
+  "path": "tool/internal/setup/config.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "findToolFiles iterates over a map (moduleDirs), which makes the resulting toolFiles slice order nondeterministic. That can make rule loading / matched.json output unstable across runs when multiple mo"
+ },
+ {
+  "i": 95,
+  "pr": 612,
+  "path": "tool/internal/setup/config.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "walkInstrumentation currently silently ignores non-blank imports (including named imports). This makes it easy for a user to write an import that still affects go.mod but does not actually enable inst"
+ },
+ {
+  "i": 96,
+  "pr": 612,
+  "path": "docs/getting-started.md",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "The gin instrumentation import path in the example does not match the repository\u2019s instrumentation module layout (the actual path includes `instrumentation/github.com/gin-gonic/gin`). As written, user"
+ },
+ {
+  "i": 97,
+  "pr": 612,
+  "path": "docs/rules.md",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "This section documents `.otel.yml` as a supported rule source and includes it in precedence, but there is no `.otel.yml` file in the repo and the setup code does not load `.otel.yml` at all (rule sour"
+ },
+ {
+  "i": 98,
+  "pr": 629,
+  "path": "tool/internal/setup/setup.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "`$root` resolution is derived from `getBuildPackages()`/`packages.Load` results, but `getBuildPackages` intentionally drops all build flags from the original `go` invocation (including module/dir-affe"
+ },
+ {
+  "i": 99,
+  "pr": 630,
+  "path": "docs/testing.md",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "The coverage floor is described as \u226574% here, but the PR title/description and issue #569 specify a \u226570% gate, and `codecov.yml` still sets `target: 70%`. Please align this NOTE block with the enforce"
+ },
+ {
+  "i": 100,
+  "pr": 630,
+  "path": "docs/testing.md",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "This rationale references a 74% floor, but the tracked agreement in issue #569 is \u226570% (and `codecov.yml` currently enforces 70%). Update the text so the documentation matches the configured gate."
+ },
+ {
+  "i": 101,
+  "pr": 630,
+  "path": "docs/testing.md",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "This section claims the target in `codecov.yml` is 74%, but `codecov.yml` currently configures `target: 70%` for both flags. Adjust the documented value to match the actual configuration (or update th"
+ },
+ {
+  "i": 102,
+  "pr": 630,
+  "path": "pkg/runtime/setup_test.go",
+  "label": "noise",
+  "basis": "judged",
+  "note": "subtest name nit",
+  "excerpt": "This table includes an \"unset\" case where `envValue` is the empty string, which results in an empty subtest name (`TestLogLevel/`) and makes failures harder to interpret. Consider giving the empty-str"
+ },
+ {
+  "i": 103,
+  "pr": 642,
+  "path": "tool/internal/setup/filter_test.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "The failure message here labels the second %q as a package name, but it prints the entire source string (e.g. \"package main\\n\"), which is misleading when diagnosing a mismatch. Use the parsed declared"
+ },
+ {
+  "i": 104,
+  "pr": 647,
+  "path": "instrumentation/go.opentelemetry.io/otel/trace/go.mod",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "The module path in this new instrumentation module appears to be copied from the old `otel/hook` module. With the current `module .../otel/hook`, the hook implementation under `instrumentation/go.open"
+ },
+ {
+  "i": 105,
+  "pr": 647,
+  "path": "pkg/runtime/trace_context.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "This PR\u2019s motivation is to ensure binaries that depend on `go.opentelemetry.io/otel/trace` but not `go.opentelemetry.io/otel/sdk/trace` still build and run. There doesn\u2019t appear to be an integration t"
+ },
+ {
+  "i": 106,
+  "pr": 655,
+  "path": "tool/util/sys.go",
+  "label": "wrong",
+  "basis": "reply",
+  "note": "os.Rename replaces on Windows; CI green",
+  "excerpt": "WriteFileAtomic uses os.Rename(tmpPath, filePath) for replacement. On Windows, os.Rename fails when the destination file already exists, so atomic writes will break for overwrites (the common case). C"
+ },
+ {
+  "i": 107,
+  "pr": 655,
+  "path": "tool/internal/setup/pin.go",
+  "label": "wrong",
+  "basis": "reply",
+  "note": "intentional for v0.5.0 compatibility",
+  "excerpt": "The generated //go:generate directive uses `go tool cmd pin ...` via util.OtelcOldToolExe. The tool binary exposed by this repo is `otelc` (see util.OtelcToolExe) and the corresponding tool package is"
+ },
+ {
+  "i": 108,
+  "pr": 655,
+  "path": "tool/internal/setup/pin.go",
+  "label": "wrong",
+  "basis": "reply",
+  "note": "same as 107",
+  "excerpt": "ensureOtelcRequire checks/installs a `tool` directive for util.OtelcOldToolCmdRoot (\u2026/tool/cmd). This path is a directory, not the actual main package (\u2026/tool/cmd/otelc), so it may not be a valid `too"
+ },
+ {
+  "i": 109,
+  "pr": 655,
+  "path": "tool/internal/setup/pin.go",
+  "label": "wrong",
+  "basis": "reply",
+  "note": "same as 107",
+  "excerpt": "ensureOtelcRequire calls f.AddTool(util.OtelcOldToolCmdRoot) (\u2026/tool/cmd). If this is not a buildable main package path, it can cause `go mod tidy` / module resolution to fail. It should likely add ut"
+ },
+ {
+  "i": 110,
+  "pr": 655,
+  "path": "tool/internal/setup/pin.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "updateToolFile only runs `go mod tidy` when imports were pruned or go.mod was modified. If a user manually adds a new instrumentation import to an existing otel.instrumentation.go and re-runs `otelc p"
+ },
+ {
+  "i": 111,
+  "pr": 655,
+  "path": "tool/internal/setup/pin.go",
+  "label": "noise",
+  "basis": "reply",
+  "note": "valid but out of scope (tracked in #585)",
+  "excerpt": "generatePinnedProjects calls syncDeps(ctx, imports, moduleDir). syncDeps currently injects `replace` directives pointing at util.GetBuildTempDir() (i.e., `.otelc-build/...`) in go.mod. When `otelc pin"
+ },
+ {
+  "i": 112,
+  "pr": 655,
+  "path": "tool/internal/setup/match.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "loadRules now errors when no OTELC_RULES, no --rules, and no tool files. This can happen in the AutoPin flow when `generatePinnedProjects` finds zero matching instrumentations and intentionally skips "
+ },
+ {
+  "i": 113,
+  "pr": 654,
+  "path": "docs/configuration.md",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "The `--rules` flag is a global `otelc` flag; `otelc go` uses `SkipFlagParsing`, so `otelc go build --rules ...` will pass `--rules` through to the Go toolchain instead of being handled by `otelc`. Upd"
+ },
+ {
+  "i": 114,
+  "pr": 654,
+  "path": "docs/configuration.md",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "Same issue as above: `--rules` must come before the `go` subcommand, otherwise it won't be parsed by `otelc`."
+ },
+ {
+  "i": 115,
+  "pr": 654,
+  "path": "docs/configuration.md",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "Same issue as above: `--rules` must be provided as a global `otelc` flag (before `go`)."
+ },
+ {
+  "i": 116,
+  "pr": 654,
+  "path": "docs/external-configuration.md",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "`--rules` is a global `otelc` flag; because `otelc go` skips flag parsing, the example needs `--rules` before the `go` subcommand (otherwise it will be forwarded to `go build`)."
+ },
+ {
+  "i": 117,
+  "pr": 654,
+  "path": "docs/troubleshooting.md",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "The documented error message and supported subcommands are out of date: the tool supports `go test` as well, and the actual error strings include it. Updating this section avoids sending users on a fa"
+ },
+ {
+  "i": 118,
+  "pr": 654,
+  "path": "docs/troubleshooting.md",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "`otelc` opens `.otelc-build/debug.log` with append mode (it does not truncate the file), so this statement is inaccurate. This affects expectations when users re-run builds and see older logs mixed in"
+ },
+ {
+  "i": 119,
+  "pr": 654,
+  "path": "docs/troubleshooting.md",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "This table entry says `debug.log` is overwritten each run, but the tool currently appends to the file. Align this description with the actual behavior so users know whether to delete the file between "
+ },
+ {
+  "i": 120,
+  "pr": 668,
+  "path": "pkg/runtime/otel_setup.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "The SetupOTelSDK doc comment lists OTEL_METRICS_EXPORTER values as only `otlp`, `console`, `none`, but the implementation uses autoexport.NewMetricReader which (per the inline comment in setupMeterPro"
+ },
+ {
+  "i": 121,
+  "pr": 668,
+  "path": "pkg/runtime/setup_test.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "TestSetupOTelSDKDisabled\u2019s non-disabled cases assume the default exporters will install a trace provider. If the test runner environment sets OTEL_*_EXPORTER (e.g., OTEL_TRACES_EXPORTER=none), this te"
+ },
+ {
+  "i": 122,
+  "pr": 668,
+  "path": "pkg/runtime/setup_test.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "This table-driven test calls SetupOTelSDK repeatedly for non-disabled values; SetupOTelSDK -> Initialize installs a signal handler goroutine each time (and the handler can call os.Exit(0) on SIGINT). "
+ },
+ {
+  "i": 123,
+  "pr": 674,
+  "path": "tool/util/go.go",
+  "label": "wrong",
+  "basis": "reply",
+  "note": "-toolexec <cmd> form not valid",
+  "excerpt": "StripToolexecFromGoflags strips \"-toolexec\" itself, but it doesn\u2019t remove the *value* when the flag is provided in the space-separated form (\"-toolexec <cmd>\"). That leaves a stray token (the tool val"
+ },
+ {
+  "i": 124,
+  "pr": 674,
+  "path": "tool/util/toolexec_dropin_test.go",
+  "label": "wrong",
+  "basis": "reply",
+  "note": "same as 123",
+  "excerpt": "The StripToolexecFromGoflags test matrix doesn\u2019t cover the valid space-separated form `-toolexec <cmd>`. Adding a case for that would prevent regressions in the GOFLAGS stripping logic."
+ },
+ {
+  "i": 125,
+  "pr": 678,
+  "path": "instrumentation/go.opentelemetry.io/otel/sdk/trace/otel_trace_context.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "tail() now mutates the per-goroutine traceContext by popping ended wrappers (for cross-goroutine End). When it pops the last wrapper, tc.lcs is left pointing at the ended span, which can keep the unde"
+ },
+ {
+  "i": 126,
+  "pr": 678,
+  "path": "instrumentation/go.opentelemetry.io/otel/sdk/trace/otel_trace_context.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "When deleting the last span from the stack, tc.lcs is not cleared. That can retain ended spans (and their backing SDK spans) beyond their lifetime, especially for long-lived goroutines. Clearing lcs w"
+ },
+ {
+  "i": 127,
+  "pr": 689,
+  "path": "instrumentation/github.com/anthropics/anthropic-sdk-go/middleware.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "If reading the request body preview fails, the code returns `next(req)` after partially consuming `req.Body` via `TeeReader`, which can cause the SDK to see a truncated/empty request body. Reassemble "
+ },
+ {
+  "i": 128,
+  "pr": 689,
+  "path": "instrumentation/github.com/anthropics/anthropic-sdk-go/middleware.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "If reading the response body preview fails, this returns without restoring `resp.Body`, leaving the caller with a partially-consumed body. Reassemble `resp.Body` before returning so the SDK/user can s"
+ },
+ {
+  "i": 129,
+  "pr": 696,
+  "path": "scripts/semconv/fetch-upstream-semconv.sh",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "The header comment references `schemas/otelc/manifest.yaml`, but the manifest in this PR is `schemas/otelc/registry_manifest.yaml`. This is a small but concrete source of confusion when someone tries "
+ },
+ {
+  "i": 130,
+  "pr": 707,
+  "path": "test/testutil/semconv.go",
+  "label": "wrong",
+  "basis": "reply",
+  "note": "suggested deprecated rpc.system",
+  "excerpt": "The RPC semantic convention key used here (\"rpc.system.name\") does not match the project's existing RPC semconv usage (e.g., gRPC instrumentation uses \"rpc.system\"). This will either fail assertions o"
+ },
+ {
+  "i": 131,
+  "pr": 707,
+  "path": "test/apps/awsclient/main.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "The test app loads AWS config without explicitly setting a region. AWS SDK v2 requests are typically signed with SigV4 and require a non-empty region; relying on ambient AWS_REGION/AWS_DEFAULT_REGION "
+ },
+ {
+  "i": 132,
+  "pr": 710,
+  "path": "instrumentation/github.com/linode/linodego/v2/hook.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "The request-span emission contract (schemas/otelc/groups/linodego.yaml) lists `code.function.name` for doRequest spans, but `BeforeDoRequest` currently builds `LinodegoRequest` without setting any val"
+ },
+ {
+  "i": 133,
+  "pr": 710,
+  "path": "instrumentation/github.com/linode/linodego/v2/semconv/client.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "`LinodegoRequest.Operation` is currently documented as only the public Client method name, but it\u2019s also used to populate `code.function.name` for request spans. If it\u2019s intended to be set to `doReque"
+ },
+ {
+  "i": 134,
+  "pr": 764,
+  "path": "tool/internal/instrument/instrument_test.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "os.ReadFile errors are ignored here. In `-update` mode that can silently write empty/partial golden files if the generated output is missing or unreadable. Capture the error and fail the test with a c"
+ },
+ {
+  "i": 135,
+  "pr": 764,
+  "path": "tool/internal/instrument/instrument_test.go",
+  "label": "noise",
+  "basis": "judged",
+  "note": "defensive nit",
+  "excerpt": "The chained type assertions on the `-update` flag (`Value.(flag.Getter).Get().(bool)`) can panic if the flag is missing, not a bool, or no longer implements flag.Getter (e.g., due to upstream changes)"
+ },
+ {
+  "i": 136,
+  "pr": 764,
+  "path": "tool/internal/instrument/instrument_test.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "This file is guarded by `//go:build !windows`, so these tests (and this normalization) won't run on native Windows. If the intent is to address Windows failures, either the build tag needs revisiting "
+ },
+ {
+  "i": 137,
+  "pr": 764,
+  "path": "tool/internal/instrument/instrument_test.go",
+  "label": "noise",
+  "basis": "judged",
+  "note": "gofmt: CI lint catches",
+  "excerpt": "These lines are not gofmt-formatted (missing indentation) and include a whitespace-only line. This will fail formatting/lint checks and makes the diff harder to read. This issue also appears on line 5"
+ },
+ {
+  "i": 138,
+  "pr": 759,
+  "path": "pkg/runtime/setup.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "raiseSignalToSelf falls back to os.Exit(0), which reintroduces the exit-code rewrite this PR is trying to eliminate (and contradicts the comment about avoiding os.Exit). If re-raising fails, exit with"
+ },
+ {
+  "i": 139,
+  "pr": 759,
+  "path": "pkg/runtime/setup.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "signal.Stop(sigCh) is only called after Shutdown completes; during the flush window, subsequent SIGINT/SIGTERM may be intercepted by this handler and dropped (buffered channel), preventing operators f"
+ },
+ {
+  "i": 140,
+  "pr": 759,
+  "path": "pkg/runtime/setup.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "Re-raising the signal after receiving it via signal.Notify will deliver the signal a second time to any application handlers that also use signal.Notify. That can double-invoke shutdown logic or trigg"
+ },
+ {
+  "i": 141,
+  "pr": 759,
+  "path": "test/integration/grpc_server_test.go",
+  "label": "wrong",
+  "basis": "reply",
+  "note": "syscall.WaitStatus exists on Windows",
+  "excerpt": "Using syscall.WaitStatus directly makes this test Unix-specific at compile time; even though the test skips on Windows at runtime, Windows builds with the integration tag may fail because syscall.Wait"
+ },
+ {
+  "i": 142,
+  "pr": 806,
+  "path": "Makefile",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "`GOVULNCHECK_MODULES` only enumerates modules under `pkg/` and `instrumentation/` (plus `.`), but the linked issue #793 explicitly asks to iterate over *every* module (there are many additional `go.mo"
+ },
+ {
+  "i": 143,
+  "pr": 806,
+  "path": "Makefile",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "This failure message is misleading because `status` is set to 1 for *any* non-zero exit from `go run ... govulncheck ...` (e.g., network/build errors), not just when vulnerabilities are reported. Twea"
+ },
+ {
+  "i": 144,
+  "pr": 854,
+  "path": "tool/internal/rule/schema.go",
+  "label": "noise",
+  "basis": "judged",
+  "note": "comment wording",
+  "excerpt": "The comment says these are \"Point selectors\" but this const block also includes non-point keys (e.g. `file`, `all-of`, `one-of`, `not`) and even top-level-only keys (`target`, `version`). This is misl"
+ },
+ {
+  "i": 145,
+  "pr": 729,
+  "path": "tool/internal/instrument/func_template.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "`collectArguments` can generate an identifier that already exists in the signature. For example, rendering any argument accessor/count for `func F(_ignoredParam0 int, _ int)` renames `_` to `_ignoredP"
+ },
+ {
+  "i": 146,
+  "pr": 880,
+  "path": "instrumentation/github.com/linode/linodego/v2/semconv/client.go",
+  "label": "noise",
+  "basis": "judged",
+  "note": "defensive nil on helper",
+  "excerpt": "ErrorType will panic if called with a nil error because reflect.TypeOf(nil) returns nil and t.PkgPath()/t.Name() dereference it. Even if current callers pass non-nil, this is an exported helper and sh"
+ },
+ {
+  "i": 147,
+  "pr": 880,
+  "path": "instrumentation/github.com/linode/linodego/v2/semconv/client.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "This comment says error.type is only recorded when the operation failed *without* a status code, but the implementation records error.type whenever errorType is non-empty (including HTTP failures like"
+ },
+ {
+  "i": 148,
+  "pr": 987,
+  "path": "tool/internal/instrument/apply_decl.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "`parseValueExpr` still indexes `file.Decls[0]` / `genDecl.Specs[0]` and uses `util.AssertType`, which calls `ex.Fatalf` (process exit) on unexpected AST shapes. This means malformed inputs can still c"
+ },
+ {
+  "i": 149,
+  "pr": 1037,
+  "path": "test/apps/kafkaproducer/main.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "compile error; CI also fails",
+  "excerpt": "`writeMessage` is still declared without a result, so this value-returning statement does not compile. Change it to return `error`, propagate that error from `run`, and add the successful `return nil`"
+ },
+ {
+  "i": 150,
+  "pr": 1037,
+  "path": "test/apps/kafkaconsumer/main.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "compile error; CI also fails",
+  "excerpt": "`writeMessage` has no return value, making this return a compile error; `run` also ignores the seeded write and has no successful return. Return `error` from the helper and propagate it through `run`."
+ },
+ {
+  "i": 151,
+  "pr": 1037,
+  "path": "test/apps/grpcclient/main.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "compile error; CI also fails",
+  "excerpt": "`doUnary` is declared without a result, so this return does not compile. Make the helper return `error` and have `run` return or handle it instead of ignoring the call. This issue also appears on line"
+ },
+ {
+  "i": 152,
+  "pr": 1037,
+  "path": "test/apps/mongoclient/main.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "compile error; CI also fails",
+  "excerpt": "`v1` is declared without a result, so this return (and the disconnect return below) does not compile. Make `v1` return an error, use a named result if disconnect errors must be surfaced from the defer"
+ },
+ {
+  "i": 153,
+  "pr": 1037,
+  "path": "test/apps/linodegoclient/main.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "compile error; CI also fails",
+  "excerpt": "`runNotFound` has no return value, so returning this error does not compile. Change it to return `error` and propagate that result from the `not_found` branch of `run`. This issue also appears on line"
+ },
+ {
+  "i": 154,
+  "pr": 1037,
+  "path": "test/apps/otelsdk/main.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "compile error; CI also fails",
+  "excerpt": "This anonymous goroutine has no result type, so returning an error from it does not compile. Send serving failures over an error channel and have `run` select between that channel and the shutdown sig"
+ },
+ {
+  "i": 155,
+  "pr": 1037,
+  "path": "test/apps/httpserverkafkaclient/main.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "compile error; CI also fails",
+  "excerpt": "This goroutine is declared as `func()` and cannot return a value, so the package does not compile. Report the serve error through a channel and select on it alongside the shutdown signal before runnin"
+ },
+ {
+  "i": 156,
+  "pr": 1037,
+  "path": "test/apps/httpserverdbclient/main.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "compile error; CI also fails",
+  "excerpt": "The anonymous `func()` cannot return an error value, so this change fails compilation. Forward server failures to `run` via an error channel and select between that error and the signal context, prese"
+ },
+ {
+  "i": 157,
+  "pr": 1037,
+  "path": "test/apps/grpcserverkafkaclient/main.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "compile error; CI also fails",
+  "excerpt": "This `func()` goroutine has no return value, so this error return does not compile. Send the serve error to `run` and select it against the termination signal before gracefully stopping the server."
+ },
+ {
+  "i": 158,
+  "pr": 1037,
+  "path": "test/apps/grpcservergrpcclient/main.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "compile error; CI also fails",
+  "excerpt": "The backend goroutine is a no-result `func()`, so this value return is a compile error. Propagate serving failures over an error channel that `run` selects on together with the shutdown signal. This i"
+ },
+ {
+  "i": 159,
+  "pr": 1037,
+  "path": "test/apps/grpcserverdbclient/main.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "compile error; CI also fails",
+  "excerpt": "A no-result anonymous goroutine cannot return this error, so the package fails to compile. Forward the serve failure through a channel and let `run` select between it and the signal before cleanup."
+ },
+ {
+  "i": 160,
+  "pr": 1037,
+  "path": "test/apps/ginserverhttpclient/main.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "compile error; CI also fails",
+  "excerpt": "This backend goroutine has no result type, making the error return invalid Go. Use an error channel consumed by `run` so startup/serve failures trigger the same graceful cleanup path as other errors. "
+ },
+ {
+  "i": 161,
+  "pr": 1037,
+  "path": "test/apps/dbclient/main.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "The new `run` wrapper still invokes helpers containing `log.Fatalf` (for ping, exec, query, prepare, and transaction failures), so those paths still call `os.Exit(1)` and skip `defer db.Close()`. Refa"
+ },
+ {
+  "i": 162,
+  "pr": 1037,
+  "path": "test/apps/k8sclient/main.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "Only some failures were converted: cache-sync failure and the update/deletion event timeouts still call `log.Fatalf`, so those paths bypass the new `run` cleanup and contradict the all-calls refactor "
+ },
+ {
+  "i": 163,
+  "pr": 1211,
+  "path": "tool/util/go.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "`QuoteGoflagsToken` also quotes paths that contain a quote but no whitespace. That inner quote is unnecessary (`quoted.Split` treats an interior quote literally), and in the nested path it makes the o"
+ },
+ {
+  "i": 164,
+  "pr": 1211,
+  "path": "tool/internal/instrument/toolexec.go",
+  "label": "noise",
+  "basis": "judged",
+  "note": "diagnostic wording",
+  "excerpt": "This failure is also reachable for a Unix path containing a double quote and whitespace: the inner flag then uses single quotes, so the outer token contains both quote kinds. The diagnostic incorrectl"
+ },
+ {
+  "i": 165,
+  "pr": 1246,
+  "path": "tool/internal/setup/pin.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "In the AddTool error branch, this wraps `err` (from earlier ReadFile/Parse) instead of the actual `addErr`, which can return nil/incorrect error context."
+ },
+ {
+  "i": 166,
+  "pr": 1249,
+  "path": "tool/internal/setup/pin.go",
+  "label": "noise",
+  "basis": "judged",
+  "note": "consistency nit",
+  "excerpt": "ensureOtelcRequire now wraps some raw errors with ex.Wrap, but ensureOtelcRequireVersion still returns the raw error from modfile.File.AddRequire. That leaves a non-stackful error path, which appears "
+ },
+ {
+  "i": 167,
+  "pr": 1170,
+  "path": "tool/internal/instrument/trampoline.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "`dst.Inspect` rewrites every matching identifier, including identifiers that are names rather than type-parameter references. For example, valid `type M[Stringer any, V fmt.Stringer] struct{}` with re"
+ },
+ {
+  "i": 168,
+  "pr": 1377,
+  "path": "instrumentation/log/log_hook.go",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "`traceIDMarker` requires a literal space before `trace_id=`, so an output that already starts with `trace_id=existing` (or has the field after another non-space delimiter) is not recognized and the ho"
+ },
+ {
+  "i": 169,
+  "pr": 1393,
+  "path": "go.mod",
+  "label": "useful",
+  "basis": "reply",
+  "note": "",
+  "excerpt": "The Go baseline bump is incomplete. `Makefile:29` still sets `GO_VERSION = 1.25`, so `make go-work` emits `go 1.25.0`; Go rejects that workspace because this module requires 1.26.0. Please also update"
+ },
+ {
+  "i": 170,
+  "pr": 1362,
+  "path": "tool/internal/setup/setup.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "`resolveImportPath` reloads `.` without the original build flags. For an explicit file target that is only enabled by a CLI tag (for example, `otelc go build -tags=custom hooks/hooks.go` where `hooks."
+ },
+ {
+  "i": 171,
+  "pr": 1360,
+  "path": "tool/internal/setup/match.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "When version filtering removes every relevant rule, this now parses every source even though no rule can match; the previous flow returned an empty set without AST work. Besides adding avoidable setup"
+ },
+ {
+  "i": 172,
+  "pr": 1394,
+  "path": "tool/internal/setup/pin.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "A target containing only `not:` entries is nonzero, so this minimal loader accepts it. Matching then selects no dependency, which can omit the instrumentation module during auto-pinning before the ful"
+ },
+ {
+  "i": 173,
+  "pr": 1394,
+  "path": "docs/rules.md",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "This type annotation still says `target` is a string even though this PR also permits a list. Describing it as \u201cstring or list\u201d keeps the schema reference internally consistent."
+ },
+ {
+  "i": 174,
+  "pr": 1390,
+  "path": "tool/internal/setup/inject.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "The five-pass cap can truncate a valid finite rule chain. Each pass may discover one target whose rule names a new hook (H0 \u2192 P1 \u2192 H1 \u2192 P2, etc.); if the fifth discovered target names H5, its dependen"
+ },
+ {
+  "i": 175,
+  "pr": 1390,
+  "path": "tool/internal/setup/inject.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "`extractBuildFlags` preserves `-C`, but passing it directly as a `packages.Load` build flag bypasses the repository's required normalization into `Config.Dir` (`tool/internal/pkgload/pkgload.go:29-37,"
+ },
+ {
+  "i": 176,
+  "pr": 1390,
+  "path": "tool/internal/setup/inject.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "A nil error from `packages.Load` does not mean every loaded package is valid; `go list` failures are returned in `Package.Errors`, as other loaders in this repository explicitly handle. Without checki"
+ },
+ {
+  "i": 177,
+  "pr": 1312,
+  "path": "tool/internal/instrument/apply_call.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "`compileExpression` substitutes the original call AST into the wrapper, so this traversal also rewrites selectors that came from the user's call. For example, with an override `traced -> f`, `traced.W"
+ },
+ {
+  "i": 178,
+  "pr": 1312,
+  "path": "tool/internal/instrument/apply_decl.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "This rewrites selectors inside the declaration's original initializer because `compileExpression` embeds that initializer into the returned wrapper AST. An override such as `traced -> f` can therefore"
+ },
+ {
+  "i": 179,
+  "pr": 1312,
+  "path": "tool/internal/instrument/apply_directive.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "A directive template may render a target function's argument or receiver name as a selector qualifier. For example, if an argument is named `traced`, `{{ .FuncArgument 0 }}.Method()` is rewritten to `"
+ },
+ {
+  "i": 180,
+  "pr": 1312,
+  "path": "tool/internal/instrument/apply_lit.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "The wrapped expression contains the literal's original field value as the `{{ . }}` subtree, and this traversal rewrites that original code too. If the field value has `traced.X` for an unrelated impo"
+ },
+ {
+  "i": 181,
+  "pr": 1312,
+  "path": "tool/internal/instrument/apply_raw.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "Rendered raw templates can contain target-derived identifiers, not just rule import qualifiers. If a function argument is named `traced`, `{{ .FuncArgument 0 }}.Method()` renders as `traced.Method()` "
+ },
+ {
+  "i": 182,
+  "pr": 1312,
+  "path": "tool/internal/instrument/imports.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "Scanning the entire file can mistake unrelated existing selectors for references introduced by this rule. If the file imports `fmt` as `f`, the generated `traced` references are overridden to `f`, but"
+ },
+ {
+  "i": 183,
+  "pr": 1312,
+  "path": "tool/internal/setup/setup.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "`getBuildPackages` is also used for `otelc go test`, but `packages.Load` leaves `Config.Tests` false, so this dependency graph excludes imports that occur only in `_test.go` and external test packages"
+ },
+ {
+  "i": 184,
+  "pr": 1374,
+  "path": "tool/internal/instrument/apply_call.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "Matching by the decorator's node position stops working after an earlier `method_call` replacement: `applyCallReplace` installs a cloned subtree, and cloned selector nodes are absent from `ip.parser`'"
+ },
+ {
+  "i": 185,
+  "pr": 1374,
+  "path": "tool/internal/instrument/apply_call.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "The type-checking importer discards `cfg.ImportMap` and only receives `PackageFile`. For compiler invocations where an imported source path is remapped, `ImportFrom` looks up the unmapped path, fails "
+ },
+ {
+  "i": 186,
+  "pr": 1374,
+  "path": "tool/internal/instrument/apply_call.go",
+  "label": "useful",
+  "basis": "judged",
+  "note": "",
+  "excerpt": "Add coverage for the advertised chained-selector case (for example, `http.DefaultClient.Do(...)`). All new matching tests exercise only a plain receiver such as `l.Info(...)`, so the main behavior tha"
+ }
+]

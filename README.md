@@ -43,6 +43,26 @@ judgement; corrections welcome. `python3 analyze_labels.py` recomputes the metri
 Review ordering and low-confidence comments come from `data/reviews/` (fetched by `fetch.sh`).
 Copilot's suppressed low-confidence comments were negligible (6 across 4 PRs) and are not counted.
 
+## Copilot comment labels
+
+`copilot_labels.json` labels all 187 Copilot inline comments `useful` (correct and worth raising),
+`noise` (correct but not worth a reviewer's attention: nits, PR-description remarks, out-of-scope)
+or `wrong` (incorrect or doesn't apply). `basis` says whether the label rests on the reply thread
+(`reply`) or on my reading of the code (`judged`).
+
+Result: 143 useful (76%), 27 noise (14%), 17 wrong (9%). Copilot's comments are mostly right;
+the gap is what it doesn't comment on.
+
+## Held-out evaluation set
+
+`heldout.json` holds 15 PRs frozen before any guidance was written (seed 1411; criteria inside).
+They are PRs maintainers reviewed that have no Copilot inline comments and are not in the tuning set.
+Their review comments are not read until the guidance is frozen. `scope` splits them into `tool`
+(8) and `instrumentation` (7) by changed file paths.
+
+`guidance_trace.md` maps every rule in the draft review guidance to the tuning comments and repo
+docs it comes from.
+
 ## Results (2026-09-28 snapshot)
 
 | Metric | Value |
