@@ -63,6 +63,19 @@ Their review comments are not read until the guidance is frozen. `scope` splits 
 `guidance_trace.md` maps every rule in the draft review guidance to the tuning comments and repo
 docs it comes from.
 
+## Replay evaluation
+
+`replay.py` replays PR diffs in a sandbox repo (not a fork) so Copilot reviews the same diff with
+and without the guidance. Each replay is a pair of snapshot commits: the PR's merge base and the
+commit maintainers first reviewed. Guidance files are added to both sides in the guided condition,
+so they never appear in the diff. Snapshots use neutral commit messages (nothing references upstream
+issues) and rename `.github/workflows` so the sandbox doesn't run otelc's CI. It is a dry run unless
+`--push` is passed.
+
+`evaluate.py collect` downloads the reviews, `evaluate.py sheet` writes a blind scoring sheet
+(Copilot comments from both conditions shuffled, condition hidden in a separate key file), and
+`evaluate.py score` reports defect recall, comment precision and noise per PR per condition.
+
 ## Results (2026-09-28 snapshot)
 
 | Metric | Value |
