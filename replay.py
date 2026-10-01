@@ -22,7 +22,9 @@ def git(clone, *args, env=None, inp=None):
     r = subprocess.run(['git', '-C', clone, *args], capture_output=True, text=True,
                        env={**os.environ, **(env or {})}, input=inp)
     if r.returncode:
-        sys.exit(f'git {" ".join(args)} failed: {r.stderr.strip()}')
+        msg = f'git {" ".join(args)} failed: {r.stderr.strip()}'
+        tok = os.environ.get('GH_TOKEN')
+        sys.exit(msg.replace(tok, '***') if tok else msg)
     return r.stdout.strip()
 
 
@@ -33,7 +35,7 @@ def gh(*args):
     return r.stdout.strip()
 
 
-def pilot_entries():
+def pilot_entries(prs=None):
     """Base and reviewed commits for the pilot PRs, from the comment data (same rule as heldout)."""
     import glob
     rows = [c for f in glob.glob(f'{D}/data/rc_*.json') for c in json.load(open(f))]
@@ -80,6 +82,7 @@ def main():
     ap.add_argument('--guidance-ref', required=True, help='branch in --clone holding the guidance files')
     ap.add_argument('--repo', required=True, help='sandbox repo OWNER/NAME (not a fork)')
     ap.add_argument('--runs', type=int, default=1)
+    ap.add_argument('--prs', type=int, nargs='*', help='limit to these upstream PR numbers')
     ap.add_argument('--push', action='store_true')
     ap.add_argument('--request-review', action='store_true')
     a = ap.parse_args()
@@ -89,8 +92,11 @@ def main():
 
     entries = pilot_entries() if a.set == 'pilot' else [
         p for p in json.load(open(f'{D}/heldout.json'))['picked'] if p['scope'] == a.scope]
+    if a.prs:
+        entries = [e for e in entries if e['pr'] in a.prs]
     blobs = {p: git(a.clone, 'rev-parse', f'{a.guidance_ref}:{p}') for p in GUIDANCE}
-    url = f'https://github.com/{a.repo}.git'
+    tok = os.environ.get('GH_TOKEN')
+    url = f'https://x-access-token:{tok}@github.com/{a.repo}.git' if tok else f'https://github.com/{a.repo}.git'
     log = []
     for e in entries:
         git(a.clone, 'fetch', '-q', 'upstream', e['base_commit'], e['review_commit'])
