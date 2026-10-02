@@ -18,7 +18,7 @@ PRs in `heldout.json` were read, and none of the code the rules cite was introdu
 | Logic that can drift apart | #629 `-C` parsed in three places (M58); #385 duplicated validation (M152, M153); #854 hand-synced lists (M163, M164) |
 | Documentation drift | #629 (M54), #612 (M48), #654 (M23–M25, M32, M33), #562 (M125), #1374 example cannot compile (M93), #617 (M113) |
 | Nondeterminism | #1312 (M96), #604 (M107), #689 (M132, M138), #612 (C94, accepted) |
-| Skip what CI enforces | maintainer lint comments (M89, M90, M123, M124); C137 (gofmt); `.tools/golangci.yml` (77 linters); workflows `check-consistency`, `check-typos`, `check-license-headers`, `check-conventional-commit`, `verify-bundle`, `lint-markdown`; `.github/codecov.yml` |
+| Skip findings the CI lint run already reports (real problems still in scope) | maintainer lint comments (M89, M90, M123, M124); C137 (gofmt); `.tools/golangci.yml` (77 linters); workflows `check-consistency`, `check-typos`, `check-license-headers`, `check-conventional-commit`, `verify-bundle`, `lint-markdown`; `.github/codecov.yml` |
 | Skip problems that need future changes | #540 maintainer declined (C30, C31); #655 out of scope (C111); simplicity principle in `docs/api-design-and-project-structure.md` |
 | Read the PR head first | #386 "already uses `!= nil`" (C44, C45, wrong) |
 | Go version from `go.mod`; per-iteration loop variables | #561 (C46, wrong) |
@@ -30,11 +30,11 @@ PRs in `heldout.json` were read, and none of the code the rules cite was introdu
 
 | Rule | Evidence |
 |---|---|
-| `packages.Load` gets build flags via `extractBuildFlags` | #1362 (M79, C170); #629 (C98); #1390 (C175); #483 `-ldflags` value (M11); flag list in `tool/internal/setup/args.go` |
+| Loads that mirror the user's build get flags via `extractBuildFlags`; instrumentation-resolving loads (`config.go`, `store.go`) don't | #1362 (M79, C170); #629 (C98); #1390 (C175); #483 `-ldflags` value (M11); flag list in `tool/internal/setup/args.go` |
 | Use `classifyArgs` instead of re-splitting | #629 (M58); `tool/internal/setup/args.go` |
 | Reuse `-C` handling; paths resolve against `-C` | #629 (M58, M59); `loadDirFromBuildFlags` in `tool/internal/pkgload/pkgload.go`; `go help build` |
 | GOFLAGS: `-flag=value` only, `quoted.Split` semantics | #674 (M38, M39; C123, C124 wrong on `-toolexec <cmd>`); `tool/util/go.go` |
-| `go test` flags and `-args` / `--` | #562 "Missing flags from `go help testflags`" (M110); `tool/internal/setup/args.go` |
+| `go test` flags; `--` itself is passed to the test binary | #562 "Missing flags from `go help testflags`" (M110); `tool/internal/setup/args.go`; `cmd/go/internal/test/testflag.go`; PR #1441 review |
 | Check `Package.Errors` | #1390 (C176); #612 (M47, M65); #617 (M112) |
 | Apply the importcfg `importmap` | #1374 (M92) |
 | Subprocess per call | #612 (M62); #629 (M57) |
@@ -58,5 +58,3 @@ PRs in `heldout.json` were read, and none of the code the rules cite was introdu
   semantic conventions, the runtime enable/disable gate, restricted hook imports, `GetParam` on
   generic targets): they apply to `instrumentation/`, which ADR-0007 moves to
   `opentelemetry-go-compile-contrib`, so they belong in that repository.
-- **`excludeAgent`:** GitHub's docs and editors disagree on its format, so it isn't used. Without
-  it, Copilot cloud agent also reads these files, which is harmless.
