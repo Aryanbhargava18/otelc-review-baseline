@@ -390,9 +390,9 @@
   "i": 43,
   "pr": 385,
   "path": "tool/internal/setup/filter.go",
-  "label": "noise",
+  "label": "useful",
   "basis": "reply",
-  "note": "PR description",
+  "note": "PR description contradicted the code; author updated it",
   "excerpt": "PR description lists changed files under `tool/internal/filter/...`, but the implementation/tests in this PR are under `tool/internal/setup/...` (plus golden fixtures under `tool/internal/instrument/."
  },
  {
@@ -687,9 +687,9 @@
   "i": 76,
   "pr": 562,
   "path": "tool/internal/setup/match.go",
-  "label": "noise",
+  "label": "useful",
   "basis": "reply",
-  "note": "PR description",
+  "note": "PR description contradicted the code; author updated it",
   "excerpt": "PR description says `is_test` matches on the `.test` import-path suffix, but the implementation actually derives test-ness from the compile\u2019s source set (`_test.go` / `_testmain.go`) via isTestBuild +"
  },
  {

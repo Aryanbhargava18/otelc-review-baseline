@@ -50,7 +50,7 @@ Copilot's suppressed low-confidence comments were negligible (6 across 4 PRs) an
 or `wrong` (incorrect or doesn't apply). `basis` says whether the label rests on the reply thread
 (`reply`) or on my reading of the code (`judged`).
 
-Result: 143 useful (76%), 27 noise (14%), 17 wrong (9%). Copilot's comments are mostly right;
+Result: 145 useful (78%), 25 noise (13%), 17 wrong (9%). Copilot's comments are mostly right;
 the gap is what it doesn't comment on.
 
 ## Held-out evaluation set
@@ -60,7 +60,7 @@ They are PRs maintainers reviewed that have no Copilot inline comments and are n
 Their review comments are not read until the guidance is frozen. `scope` splits them into `tool`
 (8) and `instrumentation` (7) by changed file paths.
 
-`guidance_trace.md` maps every rule in the draft review guidance to the tuning comments and repo
+`guidance_trace.md` maps every rule in the review guidance to the tuning comments and repo
 docs it comes from.
 
 ## Replay evaluation

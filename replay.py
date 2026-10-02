@@ -13,7 +13,7 @@ Dry run by default. Pass --push to create branches and PRs, --request-review to 
 import argparse, json, os, shutil, subprocess, sys, tempfile
 
 D = os.path.dirname(os.path.abspath(__file__))
-GUIDANCE = ['.github/copilot-instructions.md', '.github/instructions/tool.instructions.md']
+GUIDANCE = ['.github/instructions/code-review.instructions.md', '.github/instructions/tool.instructions.md']
 # Tuning PRs used only to check the mechanics and the cost before the held-out run.
 PILOT = [1362, 674, 612]
 

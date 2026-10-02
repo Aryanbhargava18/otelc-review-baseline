@@ -1,0 +1,25 @@
+{
+ "guidance_ref": "chore/copilot-review-instructions",
+ "guidance_blobs": {
+  ".github/copilot-instructions.md": "8b49f4f32034d186fdc6852f4bdf4251437f5acb",
+  ".github/instructions/tool.instructions.md": "b1db03a1f57adf40e75f52287bc261571ab60d85"
+ },
+ "runs": [
+  {
+   "pr": 1362,
+   "condition": "baseline",
+   "run": 1,
+   "base_branch": "r/1362/baseline/1/base",
+   "head_branch": "r/1362/baseline/1/head",
+   "sandbox_pr": 1
+  },
+  {
+   "pr": 1362,
+   "condition": "guided",
+   "run": 1,
+   "base_branch": "r/1362/guided/1/base",
+   "head_branch": "r/1362/guided/1/head",
+   "sandbox_pr": 2
+  }
+ ]
+}
