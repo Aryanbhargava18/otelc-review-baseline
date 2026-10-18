@@ -96,7 +96,7 @@ def score(a):
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument('cmd', choices=['collect', 'sheet', 'score'])
-    ap.add_argument('--set', choices=['pilot', 'heldout'], required=True)
+    ap.add_argument('--set', choices=['pilot', 'heldout', 'manual'], required=True)
     ap.add_argument('--repo')
     a = ap.parse_args()
     {'collect': collect, 'sheet': sheet, 'score': score}[a.cmd](a)

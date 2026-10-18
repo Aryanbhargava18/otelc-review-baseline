@@ -1,0 +1,234 @@
+{
+ "guidance_ref": "chore/copilot-review-instructions",
+ "guidance_blobs": {
+  ".github/instructions/code-review.instructions.md": "90554554e36ecc260814082b23a6d64ac457fac0",
+  ".github/instructions/tool.instructions.md": "8a8bff4339cf6d91b9781ce3449ac3d7d2d7f610"
+ },
+ "mode": "vscode-manual",
+ "runs": [
+  {
+   "pr": 1326,
+   "condition": "baseline",
+   "run": 1,
+   "worktree": "/Users/aryan./Documents/lfxx/manual-replay/1326-baseline",
+   "sandbox_pr": "1326-baseline-r1"
+  },
+  {
+   "pr": 1326,
+   "condition": "baseline",
+   "run": 2,
+   "worktree": "/Users/aryan./Documents/lfxx/manual-replay/1326-baseline",
+   "sandbox_pr": "1326-baseline-r2"
+  },
+  {
+   "pr": 1326,
+   "condition": "guided",
+   "run": 1,
+   "worktree": "/Users/aryan./Documents/lfxx/manual-replay/1326-guided",
+   "sandbox_pr": "1326-guided-r1"
+  },
+  {
+   "pr": 1326,
+   "condition": "guided",
+   "run": 2,
+   "worktree": "/Users/aryan./Documents/lfxx/manual-replay/1326-guided",
+   "sandbox_pr": "1326-guided-r2"
+  },
+  {
+   "pr": 616,
+   "condition": "baseline",
+   "run": 1,
+   "worktree": "/Users/aryan./Documents/lfxx/manual-replay/616-baseline",
+   "sandbox_pr": "616-baseline-r1"
+  },
+  {
+   "pr": 616,
+   "condition": "baseline",
+   "run": 2,
+   "worktree": "/Users/aryan./Documents/lfxx/manual-replay/616-baseline",
+   "sandbox_pr": "616-baseline-r2"
+  },
+  {
+   "pr": 616,
+   "condition": "guided",
+   "run": 1,
+   "worktree": "/Users/aryan./Documents/lfxx/manual-replay/616-guided",
+   "sandbox_pr": "616-guided-r1"
+  },
+  {
+   "pr": 616,
+   "condition": "guided",
+   "run": 2,
+   "worktree": "/Users/aryan./Documents/lfxx/manual-replay/616-guided",
+   "sandbox_pr": "616-guided-r2"
+  },
+  {
+   "pr": 809,
+   "condition": "baseline",
+   "run": 1,
+   "worktree": "/Users/aryan./Documents/lfxx/manual-replay/809-baseline",
+   "sandbox_pr": "809-baseline-r1"
+  },
+  {
+   "pr": 809,
+   "condition": "baseline",
+   "run": 2,
+   "worktree": "/Users/aryan./Documents/lfxx/manual-replay/809-baseline",
+   "sandbox_pr": "809-baseline-r2"
+  },
+  {
+   "pr": 809,
+   "condition": "guided",
+   "run": 1,
+   "worktree": "/Users/aryan./Documents/lfxx/manual-replay/809-guided",
+   "sandbox_pr": "809-guided-r1"
+  },
+  {
+   "pr": 809,
+   "condition": "guided",
+   "run": 2,
+   "worktree": "/Users/aryan./Documents/lfxx/manual-replay/809-guided",
+   "sandbox_pr": "809-guided-r2"
+  },
+  {
+   "pr": 1278,
+   "condition": "baseline",
+   "run": 1,
+   "worktree": "/Users/aryan./Documents/lfxx/manual-replay/1278-baseline",
+   "sandbox_pr": "1278-baseline-r1"
+  },
+  {
+   "pr": 1278,
+   "condition": "baseline",
+   "run": 2,
+   "worktree": "/Users/aryan./Documents/lfxx/manual-replay/1278-baseline",
+   "sandbox_pr": "1278-baseline-r2"
+  },
+  {
+   "pr": 1278,
+   "condition": "guided",
+   "run": 1,
+   "worktree": "/Users/aryan./Documents/lfxx/manual-replay/1278-guided",
+   "sandbox_pr": "1278-guided-r1"
+  },
+  {
+   "pr": 1278,
+   "condition": "guided",
+   "run": 2,
+   "worktree": "/Users/aryan./Documents/lfxx/manual-replay/1278-guided",
+   "sandbox_pr": "1278-guided-r2"
+  },
+  {
+   "pr": 1190,
+   "condition": "baseline",
+   "run": 1,
+   "worktree": "/Users/aryan./Documents/lfxx/manual-replay/1190-baseline",
+   "sandbox_pr": "1190-baseline-r1"
+  },
+  {
+   "pr": 1190,
+   "condition": "baseline",
+   "run": 2,
+   "worktree": "/Users/aryan./Documents/lfxx/manual-replay/1190-baseline",
+   "sandbox_pr": "1190-baseline-r2"
+  },
+  {
+   "pr": 1190,
+   "condition": "guided",
+   "run": 1,
+   "worktree": "/Users/aryan./Documents/lfxx/manual-replay/1190-guided",
+   "sandbox_pr": "1190-guided-r1"
+  },
+  {
+   "pr": 1190,
+   "condition": "guided",
+   "run": 2,
+   "worktree": "/Users/aryan./Documents/lfxx/manual-replay/1190-guided",
+   "sandbox_pr": "1190-guided-r2"
+  },
+  {
+   "pr": 506,
+   "condition": "baseline",
+   "run": 1,
+   "worktree": "/Users/aryan./Documents/lfxx/manual-replay/506-baseline",
+   "sandbox_pr": "506-baseline-r1"
+  },
+  {
+   "pr": 506,
+   "condition": "baseline",
+   "run": 2,
+   "worktree": "/Users/aryan./Documents/lfxx/manual-replay/506-baseline",
+   "sandbox_pr": "506-baseline-r2"
+  },
+  {
+   "pr": 506,
+   "condition": "guided",
+   "run": 1,
+   "worktree": "/Users/aryan./Documents/lfxx/manual-replay/506-guided",
+   "sandbox_pr": "506-guided-r1"
+  },
+  {
+   "pr": 506,
+   "condition": "guided",
+   "run": 2,
+   "worktree": "/Users/aryan./Documents/lfxx/manual-replay/506-guided",
+   "sandbox_pr": "506-guided-r2"
+  },
+  {
+   "pr": 993,
+   "condition": "baseline",
+   "run": 1,
+   "worktree": "/Users/aryan./Documents/lfxx/manual-replay/993-baseline",
+   "sandbox_pr": "993-baseline-r1"
+  },
+  {
+   "pr": 993,
+   "condition": "baseline",
+   "run": 2,
+   "worktree": "/Users/aryan./Documents/lfxx/manual-replay/993-baseline",
+   "sandbox_pr": "993-baseline-r2"
+  },
+  {
+   "pr": 993,
+   "condition": "guided",
+   "run": 1,
+   "worktree": "/Users/aryan./Documents/lfxx/manual-replay/993-guided",
+   "sandbox_pr": "993-guided-r1"
+  },
+  {
+   "pr": 993,
+   "condition": "guided",
+   "run": 2,
+   "worktree": "/Users/aryan./Documents/lfxx/manual-replay/993-guided",
+   "sandbox_pr": "993-guided-r2"
+  },
+  {
+   "pr": 669,
+   "condition": "baseline",
+   "run": 1,
+   "worktree": "/Users/aryan./Documents/lfxx/manual-replay/669-baseline",
+   "sandbox_pr": "669-baseline-r1"
+  },
+  {
+   "pr": 669,
+   "condition": "baseline",
+   "run": 2,
+   "worktree": "/Users/aryan./Documents/lfxx/manual-replay/669-baseline",
+   "sandbox_pr": "669-baseline-r2"
+  },
+  {
+   "pr": 669,
+   "condition": "guided",
+   "run": 1,
+   "worktree": "/Users/aryan./Documents/lfxx/manual-replay/669-guided",
+   "sandbox_pr": "669-guided-r1"
+  },
+  {
+   "pr": 669,
+   "condition": "guided",
+   "run": 2,
+   "worktree": "/Users/aryan./Documents/lfxx/manual-replay/669-guided",
+   "sandbox_pr": "669-guided-r2"
+  }
+ ]
+}
