@@ -1,0 +1,50 @@
+{
+ "C616-0": {
+  "condition": "guided",
+  "run": 1
+ },
+ "C616-1": {
+  "condition": "baseline",
+  "run": 2
+ },
+ "C616-2": {
+  "condition": "baseline",
+  "run": 1
+ },
+ "C616-3": {
+  "condition": "guided",
+  "run": 2
+ },
+ "C616-4": {
+  "condition": "guided",
+  "run": 2
+ },
+ "C669-0": {
+  "condition": "guided",
+  "run": 2
+ },
+ "C809-0": {
+  "condition": "baseline",
+  "run": 2
+ },
+ "C809-1": {
+  "condition": "guided",
+  "run": 1
+ },
+ "C993-0": {
+  "condition": "baseline",
+  "run": 2
+ },
+ "C1190-0": {
+  "condition": "baseline",
+  "run": 1
+ },
+ "C1190-1": {
+  "condition": "guided",
+  "run": 1
+ },
+ "C1190-2": {
+  "condition": "guided",
+  "run": 1
+ }
+}

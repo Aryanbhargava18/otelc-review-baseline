@@ -57,3 +57,32 @@ What differs, and has to be stated with any result:
 
 If github.com review becomes available, the replay is rerun as originally planned and both
 results are reported.
+
+## Held-out result (Copilot CLI replay, 2026-10-18)
+
+```
+8 PRs, 18 maintainer-found defects
+
+condition             recall  comments   useful   noise   wrong  noise+wrong/PR
+baseline r1        1/18 (6%)         2      50%      0%     50%             0.1
+baseline r2        1/18 (6%)         3      67%      0%     33%             0.1
+guided r1          1/18 (6%)         4      25%     25%     50%             0.4
+guided r2          1/18 (6%)         3      67%     33%      0%             0.1
+```
+
+- **Decision rule (PREREGISTRATION.md): not met.** Mean defect recall is 1/18 in both
+  conditions, not +2, and the guided `useful` share is 46% against 58% for baseline (a 12-point
+  drop). Reported as **no measurable effect at this sample size**.
+- The one defect each run found is in PR 616. Baseline found "`-mod=vendor` on the command line
+  still fails" in both runs. Guided found it in run 1 and "workspace mode not handled" in run 2.
+  The run-2 match is borderline (Copilot describes a different failure in the same unhandled
+  workspace case). Without it, guided r2 recall is 0/18.
+- Wrong comments: both 809 runs (one per condition) claim `ConnectionHost` omits the port, but it
+  returns `host:port` (testcontainers-go v0.41.0). The two 1190 comments about
+  `.github/workflows.disabled` are an artifact of the replay renaming workflows.
+
+**Labelling deviation:** these labels were made by an AI assistant (Claude), not by a person, and
+not blind. The assistant had seen which run produced each comment before labelling. The
+preregistered second-person check on 20% of rows was not done. The labels and the reasoning for
+each Copilot row are in `score_manual.csv` and above. Treat this result as provisional until a
+person re-labels the sheet blind.

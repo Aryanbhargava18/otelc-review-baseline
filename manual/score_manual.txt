@@ -1,0 +1,7 @@
+8 PRs, 18 maintainer-found defects
+
+condition             recall  comments   useful   noise   wrong  noise+wrong/PR
+baseline r1        1/18 (6%)         2      50%      0%     50%             0.1
+baseline r2        1/18 (6%)         3      67%      0%     33%             0.1
+guided r1          1/18 (6%)         4      25%     25%     50%             0.4
+guided r2          1/18 (6%)         3      67%     33%      0%             0.1
