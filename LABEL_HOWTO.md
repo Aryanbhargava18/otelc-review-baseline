@@ -14,4 +14,4 @@ Open `score_manual_human.csv` in a spreadsheet. Fill in two columns, and don't l
 
 **`matches`** (Copilot rows only): the maintainer row ids (`M…`) whose problem this comment raises. Separate several with spaces. Leave it empty if there are none.
 
-Then run `python3 compare_labels.py`. It prints agreement with the AI labels, every row where you differ, and the final score using your labels.
+Then run `python3 compare_labels.py`. It prints agreement with the first-pass labels, every row where you differ, and the final score using your labels.

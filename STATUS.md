@@ -91,8 +91,8 @@ condition.
 616, they covered `-mod vendor` as well as `-mod=vendor` (flag forms) and the `-C` directory. These
 are not among the maintainer-found defects, so they don't count toward recall.
 
-**Labelling deviation:** these labels were made by an AI assistant (Claude), not by a person, and
-not blind. The assistant had seen which run produced each comment before labelling. The
+**Labelling deviation:** these labels come from an automated first pass, not from a person, and
+were not blind: the pass had seen which run produced each comment. The
 preregistered second-person check on 20% of rows was not done. The labels and the reasoning for
 each Copilot row are in `score_manual.csv` and above. Treat this result as provisional until a
 person re-labels the sheet blind: `score_manual_human.csv` (blank, shuffled), steps in
