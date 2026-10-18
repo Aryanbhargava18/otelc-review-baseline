@@ -1,0 +1,21 @@
+{
+ "reviews": [
+  {
+   "user": {
+    "login": "copilot-vscode"
+   }
+  }
+ ],
+ "comments": [
+  {
+   "id": "1190-baseline-r1-0",
+   "user": {
+    "login": "copilot-vscode"
+   },
+   "path": ".github/workflows.disabled/check-consistency.yaml",
+   "line": 76,
+   "original_line": 76,
+   "body": "The new check is only added to a workflow under `.github/workflows.disabled/`, so GitHub Actions will not execute it. There is no active `.github/workflows/check-consistency.yaml` containing this job, meaning the test-file naming rule is not enforced in CI."
+  }
+ ]
+}

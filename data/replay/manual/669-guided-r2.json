@@ -1,0 +1,21 @@
+{
+ "reviews": [
+  {
+   "user": {
+    "login": "copilot-vscode"
+   }
+  }
+ ],
+ "comments": [
+  {
+   "id": "669-guided-r2-0",
+   "user": {
+    "login": "copilot-vscode"
+   },
+   "path": "Makefile",
+   "line": 649,
+   "original_line": 649,
+   "body": "`make clean` now deletes every `test/apps/**/otel.instrumentation.go`. This also matches the tracked `test/apps/gincustom/otel.instrumentation.go` source file, so running the standard cleanup target removes a repository file and can break subsequent `gincustom` builds. Limit this cleanup to generated files or exclude the tracked `gincustom` file."
+  }
+ ]
+}

@@ -1,0 +1,21 @@
+{
+ "reviews": [
+  {
+   "user": {
+    "login": "copilot-vscode"
+   }
+  }
+ ],
+ "comments": [
+  {
+   "id": "809-guided-r1-0",
+   "user": {
+    "login": "copilot-vscode"
+   },
+   "path": "test/integration/cassandra_client_test.go",
+   "line": 86,
+   "original_line": 86,
+   "body": "`ConnectionHost` returns only the Docker host, not the mapped Cassandra port. Since Testcontainers maps port `9042` to a dynamically allocated host port, passing this value to `gocql.NewCluster` makes the client try `host:9042` and the integration test cannot connect. Use the Cassandra module's connection string or append the mapped `9042/tcp` port."
+  }
+ ]
+}

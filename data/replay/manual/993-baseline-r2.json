@@ -1,0 +1,21 @@
+{
+ "reviews": [
+  {
+   "user": {
+    "login": "copilot-vscode"
+   }
+  }
+ ],
+ "comments": [
+  {
+   "id": "993-baseline-r2-0",
+   "user": {
+    "login": "copilot-vscode"
+   },
+   "path": "test/testutil/readiness.go",
+   "line": 70,
+   "original_line": 70,
+   "body": "The 30-second expiry can return a port that an earlier caller still owns. `FreePort` has no release mechanism, so a test that obtains a port and takes longer than 30 seconds before binding it can have that port removed from `allocatedPorts`; a concurrent call may then receive the same port and cause nondeterministic bind failures. The registry should remain valid for the lifetime of the reservation, or the API should provide an explicit release tied to the caller's bind lifecycle."
+  }
+ ]
+}

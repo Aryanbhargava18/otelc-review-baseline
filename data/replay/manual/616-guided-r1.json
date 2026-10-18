@@ -1,0 +1,21 @@
+{
+ "reviews": [
+  {
+   "user": {
+    "login": "copilot-vscode"
+   }
+  }
+ ],
+ "comments": [
+  {
+   "id": "616-guided-r1-0",
+   "user": {
+    "login": "copilot-vscode"
+   },
+   "path": "tool/internal/setup/setup.go",
+   "line": 491,
+   "original_line": 491,
+   "body": "The vendoring workaround does not account for a `-mod=vendor` flag supplied on the command line (either `-mod=vendor` or `-mod vendor`). Since command-line flags take precedence over `GOFLAGS`, the appended `GOFLAGS=-mod=mod` is ignored for the build, and the modified `go.mod` is still checked against the stale `vendor/modules.txt`, causing the build to fail. The existing build arguments must be inspected before deciding that module mode can be forced."
+  }
+ ]
+}

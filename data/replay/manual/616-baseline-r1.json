@@ -1,0 +1,21 @@
+{
+ "reviews": [
+  {
+   "user": {
+    "login": "copilot-vscode"
+   }
+  }
+ ],
+ "comments": [
+  {
+   "id": "616-baseline-r1-0",
+   "user": {
+    "login": "copilot-vscode"
+   },
+   "path": "tool/internal/setup/setup.go",
+   "line": 491,
+   "original_line": 491,
+   "body": "The vendoring override only checks `GOFLAGS`, not the command-line build arguments. For a vendored project invoked as `otelc go build -mod=vendor ./...`, this appends `GOFLAGS=-mod=mod`, but the explicit `-mod=vendor` argument takes precedence and Go still performs the stale `vendor/modules.txt` consistency check after setup edits `go.mod`, so the build fails. Detect the `-mod` setting from the parsed build arguments as well (or otherwise handle explicit `-mod=vendor`) before applying this fallback."
+  }
+ ]
+}

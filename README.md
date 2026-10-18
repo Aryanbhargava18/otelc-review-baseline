@@ -97,6 +97,6 @@ Jul 193/28, Aug 229/19.
 ## Held-out result
 
 No measurable effect. Copilot CLI replay of the 8 held-out `tool` PRs, two runs per condition:
-mean defect recall was 1/18 with and without the guidance, and the useful share was 46% with
-guidance vs 58% without. That doesn't meet the rule in `PREREGISTRATION.md`. Method, caveats
-(CLI rather than github.com review; blind human labels verified with 88% agreement) and the full table are in `STATUS.md`.
+defect recall was 1/16 in every run with and without the guidance, while the useful share was
+71% with guidance vs 60% without. That doesn't meet the rule in `PREREGISTRATION.md`. Method,
+caveats (CLI rather than github.com review) and the full table are in `STATUS.md`.

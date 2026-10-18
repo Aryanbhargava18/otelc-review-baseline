@@ -1,0 +1,21 @@
+{
+ "reviews": [
+  {
+   "user": {
+    "login": "copilot-vscode"
+   }
+  }
+ ],
+ "comments": [
+  {
+   "id": "616-baseline-r2-0",
+   "user": {
+    "login": "copilot-vscode"
+   },
+   "path": "tool/internal/setup/setup.go",
+   "line": 491,
+   "original_line": 491,
+   "body": "This condition does not handle an explicitly requested vendor mode. If `GOFLAGS=-mod=vendor`, `goflagsSelectsModMode` returns true and no override is added; if the command contains `-mod=vendor`, the appended `GOFLAGS=-mod=mod` is overridden by the command-line flag. Because setup has modified `go.mod` without updating `vendor/modules.txt`, the subsequent build still runs in vendor mode and fails the vendor consistency check. The explicit `-mod=vendor` case should either be rejected with a clear error or have the vendor metadata updated before building."
+  }
+ ]
+}

@@ -1,0 +1,21 @@
+{
+ "reviews": [
+  {
+   "user": {
+    "login": "copilot-vscode"
+   }
+  }
+ ],
+ "comments": [
+  {
+   "id": "809-baseline-r2-0",
+   "user": {
+    "login": "copilot-vscode"
+   },
+   "path": "test/integration/cassandra_client_test.go",
+   "line": 86,
+   "original_line": 86,
+   "body": "`ConnectionHost` returns only the container hostname, not the host-mapped CQL port. Since Cassandra's exposed port is dynamically mapped by Testcontainers, passing this value to `gocql.NewCluster` makes the client fall back to port `9042` on the host, which will generally fail to connect. Retrieve `ConnectionPort` as well and pass `host:port` (or use the module's connection-string helper)."
+  }
+ ]
+}
