@@ -93,3 +93,10 @@ issues) and rename `.github/workflows` so the sandbox doesn't run otelc's CI. It
 
 Monthly Copilot review coverage (PRs opened / reviewed by Copilot): May 66/15, Jun 52/9,
 Jul 193/28, Aug 229/19.
+
+## Held-out result
+
+No measurable effect. Copilot CLI replay of the 8 held-out `tool` PRs, two runs per condition:
+mean defect recall was 1/18 with and without the guidance, and the useful share was 46% with
+guidance vs 58% without. That doesn't meet the rule in `PREREGISTRATION.md`. Method, caveats
+(CLI rather than github.com review, provisional AI labels) and the full table are in `STATUS.md`.

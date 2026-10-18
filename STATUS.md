@@ -81,8 +81,19 @@ guided r2          1/18 (6%)         3      67%     33%      0%             0.1
   returns `host:port` (testcontainers-go v0.41.0). The two 1190 comments about
   `.github/workflows.disabled` are an artifact of the replay renaming workflows.
 
+**Post-hoc note (not part of the decision rule):** 9 of the 18 maintainer defects are in
+`instrumentation/` (PR 809), which the guidance deliberately doesn't cover (see #1441). On the 9
+in-scope defects, recall is still 1 in every run, so the conclusion doesn't change. It does show the
+test has little room to detect an effect: Copilot finds almost no maintainer defects in either
+condition.
+
+**What the guidance did change (qualitative):** guided runs raised cases the guidance names. On
+616, they covered `-mod vendor` as well as `-mod=vendor` (flag forms) and the `-C` directory. These
+are not among the maintainer-found defects, so they don't count toward recall.
+
 **Labelling deviation:** these labels were made by an AI assistant (Claude), not by a person, and
 not blind. The assistant had seen which run produced each comment before labelling. The
 preregistered second-person check on 20% of rows was not done. The labels and the reasoning for
 each Copilot row are in `score_manual.csv` and above. Treat this result as provisional until a
-person re-labels the sheet blind.
+person re-labels the sheet blind: `score_manual_human.csv` (blank, shuffled), steps in
+`LABEL_HOWTO.md`, then `compare_labels.py` reports agreement and the human-labelled score.
