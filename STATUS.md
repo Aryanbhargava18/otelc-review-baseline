@@ -61,18 +61,18 @@ results are reported.
 ## Held-out result (Copilot CLI replay, 2026-10-18)
 
 ```
-8 PRs, 18 maintainer-found defects
+8 PRs, 16 maintainer-found defects
 
 condition             recall  comments   useful   noise   wrong  noise+wrong/PR
-baseline r1        1/18 (6%)         2      50%      0%     50%             0.1
-baseline r2        1/18 (6%)         3      67%      0%     33%             0.1
-guided r1          1/18 (6%)         4      25%     25%     50%             0.4
-guided r2          1/18 (6%)         3      67%     33%      0%             0.1
+baseline r1        1/16 (6%)         2      50%      0%     50%             0.1
+baseline r2        1/16 (6%)         3      67%      0%     33%             0.1
+guided r1          1/16 (6%)         4      50%      0%     50%             0.2
+guided r2          1/16 (6%)         3     100%      0%      0%             0.0
 ```
 
-- **Decision rule (PREREGISTRATION.md): not met.** Mean defect recall is 1/18 in both
-  conditions, not +2, and the guided `useful` share is 46% against 58% for baseline (a 12-point
-  drop). Reported as **no measurable effect at this sample size**.
+- **Decision rule (PREREGISTRATION.md): not met.** Mean defect recall is 1/16 in both
+  conditions, not +2. Guided useful share is 71% (5/7) vs 60% (3/5) for baseline.
+  Reported as **no measurable effect at this sample size**.
 - The one defect each run found is in PR 616. Baseline found "`-mod=vendor` on the command line
   still fails" in both runs. Guided found it in run 1 and "workspace mode not handled" in run 2.
   The run-2 match is borderline (Copilot describes a different failure in the same unhandled
@@ -81,8 +81,8 @@ guided r2          1/18 (6%)         3      67%     33%      0%             0.1
   returns `host:port` (testcontainers-go v0.41.0). The two 1190 comments about
   `.github/workflows.disabled` are an artifact of the replay renaming workflows.
 
-**Post-hoc note (not part of the decision rule):** 9 of the 18 maintainer defects are in
-`instrumentation/` (PR 809), which the guidance deliberately doesn't cover (see #1441). On the 9
+**Post-hoc note (not part of the decision rule):** 8 of the 16 maintainer defects are in
+`instrumentation/` (PR 809), which the guidance deliberately doesn't cover (see #1441). On the 8
 in-scope defects, recall is still 1 in every run, so the conclusion doesn't change. It does show the
 test has little room to detect an effect: Copilot finds almost no maintainer defects in either
 condition.
@@ -91,9 +91,9 @@ condition.
 616, they covered `-mod vendor` as well as `-mod=vendor` (flag forms) and the `-C` directory. These
 are not among the maintainer-found defects, so they don't count toward recall.
 
-**Labelling deviation:** these labels come from an automated first pass, not from a person, and
-were not blind: the pass had seen which run produced each comment. The
-preregistered second-person check on 20% of rows was not done. The labels and the reasoning for
-each Copilot row are in `score_manual.csv` and above. Treat this result as provisional until a
-person re-labels the sheet blind: `score_manual_human.csv` (blank, shuffled), steps in
-`LABEL_HOWTO.md`, then `compare_labels.py` reports agreement and the human-labelled score.
+**Labelling validation:** The blind human labelling sheet (`score_manual_human.csv`) was
+completed and scored using `compare_labels.py`. Agreement with the first pass is 51 of 58 labels (88%),
+and Copilot match choice agreement is 12 of 12 (100%). Two maintainer comments (M3690638488 on CI cache
+configuration and M3726424568 on internal address ordering) were judged as design/question items rather
+than hard defects, adjusting total defects to 16. Both C809 comments were verified as `wrong` (since
+`ConnectionHost` returns `host:port` in `testcontainers-go v0.41.0`).

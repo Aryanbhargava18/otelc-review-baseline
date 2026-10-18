@@ -6,7 +6,10 @@ then score the replay with the human labels.
 import csv, collections, os, subprocess, shutil, sys
 
 D = os.path.dirname(os.path.abspath(__file__))
-first = {r['id']: r for r in csv.DictReader(open(f'{D}/score_manual.csv'))}
+FIRST = f'{D}/score_manual_firstpass.csv'
+if not os.path.exists(FIRST):  # keep the first-pass labels once; never overwrite them
+    shutil.copy(f'{D}/score_manual.csv', FIRST)
+first = {r['id']: r for r in csv.DictReader(open(FIRST))}
 hu = {r['id']: r for r in csv.DictReader(open(f'{D}/score_manual_human.csv'))}
 todo = [i for i, r in hu.items() if not r['label']]
 if todo:
@@ -19,7 +22,6 @@ for i in hu:
     if first[i]['label'] != hu[i]['label'] or (i in cop and set(first[i]['matches'].split()) != set(hu[i]['matches'].split())):
         print(f'  differs {i}: first pass {first[i]["label"]} [{first[i]["matches"]}]  human {hu[i]["label"]} [{hu[i]["matches"]}]')
 # score with the human labels
-shutil.copy(f'{D}/score_manual.csv', f'{D}/score_manual_firstpass.csv')
 shutil.copy(f'{D}/score_manual_human.csv', f'{D}/score_manual.csv')
 print('\nscore with human labels:', flush=True)
 subprocess.run([sys.executable, f'{D}/evaluate.py', 'score', '--set', 'manual'])
