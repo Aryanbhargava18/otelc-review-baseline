@@ -1,0 +1,9 @@
+{
+ "run": "993-guided-r1",
+ "returncode": 0,
+ "model": "gpt-5.6-luna",
+ "ai_credits": "0.66",
+ "session": "e41ccd43-2fee-44b5-aa79-464e791e49c9",
+ "stdout": "I\u2019ll inspect the repository guidance and staged diff, then trace any changed behavior into relevant tests and callers before reporting only actionable findings.\n\n\u25cf Read CONTRIBUTING.md\n  \u2514 L1:240 (240 lines read)\n\n\u25cf Read tool.instructions.md\n  \u2502 .github/instructions/tool.instructions.md\n  \u2514 L1:240 (70 lines read)\n\n\u25cf Inspect staged changes and repository status (shell)\n  \u2502 git status --short && git diff --cached --stat && git diff --cached --no-ext-diff --unified=80\n  \u2514 212 lines\u2026\n\n\u2717 Run focused tests and whitespace checks (shell)\n  \u2502 git diff --cached --check && go test ./test/testutil\n  \u2514 Permission to run this tool was denied due to the following rules: `shell(go:*)`\n\n\u25cf Read collector.go\n  \u2502 test/testutil/collector.go\n  \u2514 L1:240 (94 lines read)\n\n/ Search (grep)\n  \u2502 \"FreePort\\(|allocatedPorts|WaitForTCP\" in **/*.go\n  \u2514 82 lines found\n\n\u25cf Read http_server_test.go\n  \u2502 test/integration/http_server_test.go\n  \u2514 L1:100 (71 lines read)\n\n\u25cf Read go.mod\n  \u2514 L1:40 (32 lines read)\n\n\u25cf Compare staged helper with HEAD (shell)\n  \u2502 git show HEAD:test/testutil/readiness.go && git diff --cached --numstat\n  \u2514 66 lines\u2026\n\nNO COMMENTS\n\n",
+ "stderr": "\n\nChanges    +0 -0\nAI Credits 0.66 (31s)\nTokens     \u2191 86.7k (70.9k cached, 15.7k written) \u2022 \u2193 1.7k (1.1k reasoning)\nResume     copilot --resume=e41ccd43-2fee-44b5-aa79-464e791e49c9\n"
+}

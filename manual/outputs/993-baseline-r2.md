@@ -1,8 +1,3 @@
-<!-- 993-baseline-r2: PR 993, baseline, run 2. Worktree: /Users/aryan./Documents/lfxx/manual-replay/993-baseline
-Paste every comment Copilot leaves in this run as:
-
-### path/to/file.go:LINE
-comment text
-
-Use a fresh review each run. If Copilot leaves no comments, replace this whole file with
-the single line NO COMMENTS. Leave the file untouched if the run could not be done. -->
+<!-- 993-baseline-r2: Copilot CLI, model auto -> gpt-5.6-luna, 0.63 AI credits, session fc709b26-a2a8-4b60-be44-2f2f75cd829e -->
+### test/testutil/readiness.go:70
+The 30-second expiry can return a port that an earlier caller still owns. `FreePort` has no release mechanism, so a test that obtains a port and takes longer than 30 seconds before binding it can have that port removed from `allocatedPorts`; a concurrent call may then receive the same port and cause nondeterministic bind failures. The registry should remain valid for the lifetime of the reservation, or the API should provide an explicit release tied to the caller's bind lifecycle.

@@ -1,8 +1,2 @@
-<!-- 669-baseline-r2: PR 669, baseline, run 2. Worktree: /Users/aryan./Documents/lfxx/manual-replay/669-baseline
-Paste every comment Copilot leaves in this run as:
-
-### path/to/file.go:LINE
-comment text
-
-Use a fresh review each run. If Copilot leaves no comments, replace this whole file with
-the single line NO COMMENTS. Leave the file untouched if the run could not be done. -->
+<!-- 669-baseline-r2: Copilot CLI, model auto -> gpt-5.6-luna, 1.14 AI credits, session 08b3a088-4c0f-4beb-8c05-8919014a9213 -->
+NO COMMENTS

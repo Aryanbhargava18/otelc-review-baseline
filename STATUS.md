@@ -24,22 +24,36 @@ A single run per condition (16 reviews instead of 32) is the smallest change tha
 design. It would be recorded here as a deviation from `PREREGISTRATION.md`, not applied
 silently, and the decision rule would stay as written.
 
-## Deviation: manual replay in VS Code (2026-10-18)
+## Deviation: replay run with the Copilot CLI (2026-10-18)
 
 Copilot code review on github.com is not available on this account's plan. Every replay request
 since 2026-10-14 returned "the user who requested the review has reached their quota limit", and
-support ticket #4872248 is open. The held-out replay is therefore run by hand with Copilot's review
-in VS Code (`manual_replay.py`, set `manual`). The set, the conditions, the runs, the guidance
-version, the labelling and the decision rule are unchanged from `PREREGISTRATION.md`.
+support ticket #4872248 is open. The held-out replay is therefore run with the Copilot CLI
+(`manual_replay.py` builds the worktrees, `cli_review.py` runs the reviews, set `manual`). The set,
+the conditions, two runs per condition, the guidance text, the labelling and the decision rule are
+unchanged from `PREREGISTRATION.md`.
 
 What differs, and has to be stated with any result:
 
-- **Reviewer:** this is Copilot in VS Code, not the github.com PR reviewer. The model, the context
-  and the way instruction files are loaded may differ, so the result says how the guidance
-  changes VS Code reviews. It is indicative for github.com reviews, not a measurement of them.
-- **Model:** the model used for all 32 runs: _fill in_.
-- **Guided runs where the instructions file was not listed as used:** _list here, or "none"_.
-- **Transcription:** comments are copied from VS Code into `manual/outputs/` by hand.
+- **Reviewer:** Copilot CLI 1.0.98 in non-interactive mode, one fresh session per run, reviewing the
+  staged diff of a local worktree. It is not the github.com PR reviewer, so the result says how the
+  guidance changes Copilot CLI reviews and is indicative for github.com reviews, not a measurement
+  of them.
+- **Model:** named models are not available to this account in the CLI, so every run uses `auto`.
+  The model `auto` resolved to is recorded per run in `manual/raw/<run>.json` and reported with the
+  result.
+- **Guidance frontmatter:** the CLI treats itself as the coding/cloud agent, so the
+  `excludeAgent: "cloud-agent"` line in both guidance files hides them from it (checked with
+  `copilot instruction list`). The guided worktrees use the same files with that one line removed
+  (`--strip-exclude-agent`). The text Copilot reads is otherwise identical to `e975b6a`. Baseline
+  worktrees load only `AGENTS.md`, which guided worktrees load too.
+- **Prompt:** the same for all runs (in `cli_review.py`). It asks for `### path:line` blocks or
+  `NO COMMENTS` so replies can be scored without retyping.
+- **Read-only:** file writes, network access, `go`, `make` and state-changing git commands are
+  denied. Each worktree is checked to be unchanged after its run. Runs that changed it or failed
+  are not recorded, and the PREREGISTRATION failure rule applies (retry once, then report missing).
+- An earlier VS Code attempt (one run, 1326 guided) is not used, because the CLI replaced it for
+  all 32 runs.
 
 If github.com review becomes available, the replay is rerun as originally planned and both
 results are reported.

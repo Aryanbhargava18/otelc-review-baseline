@@ -4,7 +4,12 @@
   ".github/instructions/code-review.instructions.md": "90554554e36ecc260814082b23a6d64ac457fac0",
   ".github/instructions/tool.instructions.md": "8a8bff4339cf6d91b9781ce3449ac3d7d2d7f610"
  },
- "mode": "vscode-manual",
+ "guidance_blobs_used": {
+  ".github/instructions/code-review.instructions.md": "9eeec4852949943f7f4fe4ddb7853c7173ebfa94",
+  ".github/instructions/tool.instructions.md": "e1d0245ad551a588812e33b60780b8749218f25f"
+ },
+ "strip_exclude_agent": true,
+ "mode": "copilot-cli",
  "runs": [
   {
    "pr": 1326,

@@ -1,0 +1,9 @@
+{
+ "run": "1278-guided-r1",
+ "returncode": 0,
+ "model": "gpt-5.6-luna",
+ "ai_credits": "0.56",
+ "session": "ca090241-4f62-4fa1-9019-00ab3009c2be",
+ "stdout": "\u25cf Read AGENTS.md\n  \u2514 L1:240 (77 lines read)\n\n\u25cf Read CONTRIBUTING.md\n  \u2514 L1:240 (240 lines read)\n\n\u25cf Read tool.instructions.md\n  \u2502 .github/instructions/tool.instructions.md\n  \u2514 L1:240 (70 lines read)\n\n\u25cf Inspect staged changes (shell)\n  \u2502 git --no-pager diff --cached --stat && git --no-pager diff --cached\n  \u2514 155 lines\u2026\n\n\u25cf Read importcfg.go\n  \u2502 tool/internal/imports/importcfg.go\n  \u2514 L1:180 (172 lines read)\n\n\u25cf Read parser.go\n  \u2502 tool/internal/ast/parser.go\n  \u2514 L1:180 (160 lines read)\n\n\u2717 Run targeted package tests (shell)\n  \u2502 go test ./tool/internal/ast ./tool/internal/imports\n  \u2514 Permission to run this tool was denied due to the following rules: `shell(go:*)`\n\n\u25cf Check related interfaces and callers (shell)\n  \u2502 git status --short && grep -R \"type writeCloser\" -n tool/internal/ast tool/internal/imports &&\n  \u2502 grep -R \"writeFile(\" -n tool/internal/ast tool/internal/imports | head -50\n  \u2514 16 lines\u2026\n\nNO COMMENTS\n\n",
+ "stderr": "\n\nChanges    +0 -0\nAI Credits 0.56 (22s)\nTokens     \u2191 64.4k (47.9k cached, 16.5k written) \u2022 \u2193 962 (549 reasoning)\nResume     copilot --resume=ca090241-4f62-4fa1-9019-00ab3009c2be\n"
+}

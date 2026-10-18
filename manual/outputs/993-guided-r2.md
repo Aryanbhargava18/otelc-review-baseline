@@ -1,8 +1,2 @@
-<!-- 993-guided-r2: PR 993, guided, run 2. Worktree: /Users/aryan./Documents/lfxx/manual-replay/993-guided
-Paste every comment Copilot leaves in this run as:
-
-### path/to/file.go:LINE
-comment text
-
-Use a fresh review each run. If Copilot leaves no comments, replace this whole file with
-the single line NO COMMENTS. Leave the file untouched if the run could not be done. -->
+<!-- 993-guided-r2: Copilot CLI, model auto -> gpt-5.6-luna, 0.72 AI credits, session 652975b0-be18-48c5-980c-8bc4d3a16831 -->
+NO COMMENTS

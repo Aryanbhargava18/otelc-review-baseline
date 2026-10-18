@@ -1,0 +1,32 @@
+31 runs to do
+1326-baseline-r1: 0 comments | model gpt-5.6-luna | credits 1.79
+1326-baseline-r2: 0 comments | model gpt-5.6-luna | credits 1.62
+1326-guided-r2: 0 comments | model gpt-5.6-luna | credits 1.86
+616-baseline-r1: 1 comments | model gpt-5.6-luna | credits 0.83
+616-baseline-r2: 1 comments | model gpt-5.6-luna | credits 1.24
+616-guided-r1: 1 comments | model gpt-5.6-luna | credits 1.29
+616-guided-r2: 2 comments | model gpt-5.6-luna | credits 1.58
+809-baseline-r1: 0 comments | model gpt-5.6-luna | credits 2.39
+809-baseline-r2: 1 comments | model gpt-5.6-luna | credits 1.9
+809-guided-r1: 1 comments | model copilot-search-a, gpt-5.6-luna | credits 2.12
+809-guided-r2: 0 comments | model gpt-5.6-luna | credits 2.25
+1278-baseline-r1: 0 comments | model gpt-5.6-luna | credits 0.62
+1278-baseline-r2: 0 comments | model gpt-5.6-luna | credits 0.44
+1278-guided-r1: 0 comments | model gpt-5.6-luna | credits 0.56
+1278-guided-r2: 0 comments | model gpt-5.6-luna | credits 0.67
+1190-baseline-r1: 1 comments | model gpt-5.6-luna | credits 0.88
+1190-baseline-r2: 0 comments | model gpt-5.6-luna | credits 1.02
+1190-guided-r1: 2 comments | model gpt-5.6-luna | credits 1.19
+1190-guided-r2: 0 comments | model gpt-5.6-luna | credits 1.03
+506-baseline-r1: 0 comments | model gpt-5.6-luna | credits 0.7
+506-baseline-r2: 0 comments | model gpt-5.6-luna | credits 0.66
+506-guided-r1: 0 comments | model gpt-5.6-luna | credits 1.24
+506-guided-r2: 0 comments | model gpt-5.6-luna | credits 1.33
+993-baseline-r1: 0 comments | model gpt-5.6-luna | credits 0.52
+993-baseline-r2: 1 comments | model gpt-5.6-luna | credits 0.63
+993-guided-r1: 0 comments | model gpt-5.6-luna | credits 0.66
+993-guided-r2: 0 comments | model gpt-5.6-luna | credits 0.72
+669-baseline-r1: 0 comments | model gpt-5.6-luna | credits 1.15
+669-baseline-r2: 0 comments | model gpt-5.6-luna | credits 1.14
+669-guided-r1: 0 comments | model copilot-search-a, gpt-5.6-luna | credits 1.84
+669-guided-r2: 1 comments | model gpt-5.6-luna | credits 1.83

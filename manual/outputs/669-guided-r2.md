@@ -1,8 +1,4 @@
-<!-- 669-guided-r2: PR 669, guided, run 2. Worktree: /Users/aryan./Documents/lfxx/manual-replay/669-guided
-Paste every comment Copilot leaves in this run as:
+<!-- 669-guided-r2: Copilot CLI, model auto -> gpt-5.6-luna, 1.83 AI credits, session ac3588cf-8b26-4993-96de-85d8d87d333f -->
+### Makefile:649
 
-### path/to/file.go:LINE
-comment text
-
-Use a fresh review each run. If Copilot leaves no comments, replace this whole file with
-the single line NO COMMENTS. Leave the file untouched if the run could not be done. -->
+`make clean` now deletes every `test/apps/**/otel.instrumentation.go`. This also matches the tracked `test/apps/gincustom/otel.instrumentation.go` source file, so running the standard cleanup target removes a repository file and can break subsequent `gincustom` builds. Limit this cleanup to generated files or exclude the tracked `gincustom` file.

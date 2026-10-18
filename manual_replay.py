@@ -34,6 +34,14 @@ the single line NO COMMENTS. Leave the file untouched if the run could not be do
 def prepare(a):
     entries = [p for p in json.load(open(f'{D}/heldout.json'))['picked'] if p['scope'] == a.scope]
     blobs = {p: replay.git(a.clone, 'rev-parse', f'{a.guidance_ref}:{p}') for p in replay.GUIDANCE}
+    source_blobs = dict(blobs)
+    if a.strip_exclude_agent:
+        # The CLI counts as the coding/cloud agent, so `excludeAgent: "cloud-agent"` hides the files
+        # from it. Same text, minus that line, so the CLI loads them like github.com code review does.
+        for p, b in blobs.items():
+            text = replay.git(a.clone, 'cat-file', 'blob', b) + '\n'
+            text = ''.join(l for l in text.splitlines(True) if not l.startswith('excludeAgent:'))
+            blobs[p] = replay.git(a.clone, 'hash-object', '-w', '--stdin', inp=text)
     dest = os.path.abspath(a.dest)
     os.makedirs(OUT, exist_ok=True)
     runs = []
@@ -56,7 +64,8 @@ def prepare(a):
                     open(path, 'w').write(TEMPLATE.format(rid=rid, pr=e['pr'], cond=cond, run=run, wt=wt))
                 runs.append({'pr': e['pr'], 'condition': cond, 'run': run, 'worktree': wt,
                              'sandbox_pr': rid})
-    json.dump({'guidance_ref': a.guidance_ref, 'guidance_blobs': blobs, 'mode': 'vscode-manual',
+    json.dump({'guidance_ref': a.guidance_ref, 'guidance_blobs': source_blobs, 'guidance_blobs_used': blobs,
+               'strip_exclude_agent': a.strip_exclude_agent, 'mode': a.mode,
                'runs': runs}, open(f'{D}/replay_manual.json', 'w'), indent=1)
     print(f'{len(runs)} runs -> replay_manual.json, output templates in {OUT}')
 
@@ -107,6 +116,9 @@ if __name__ == '__main__':
     ap.add_argument('--clone', help='local otelc clone with an "upstream" remote (prepare)')
     ap.add_argument('--guidance-ref', help='branch in --clone holding the guidance files (prepare)')
     ap.add_argument('--dest', default=f'{D}/../manual-replay', help='where to put the worktrees (prepare)')
+    ap.add_argument('--strip-exclude-agent', action='store_true',
+                    help='drop the excludeAgent line from the guidance copies (needed for the Copilot CLI)')
+    ap.add_argument('--mode', default='vscode-manual', help='how the reviews are run, recorded in replay_manual.json')
     a = ap.parse_args()
     if a.cmd == 'prepare' and not (a.clone and a.guidance_ref):
         ap.error('prepare needs --clone and --guidance-ref')

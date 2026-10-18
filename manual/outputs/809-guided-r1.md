@@ -1,8 +1,3 @@
-<!-- 809-guided-r1: PR 809, guided, run 1. Worktree: /Users/aryan./Documents/lfxx/manual-replay/809-guided
-Paste every comment Copilot leaves in this run as:
-
-### path/to/file.go:LINE
-comment text
-
-Use a fresh review each run. If Copilot leaves no comments, replace this whole file with
-the single line NO COMMENTS. Leave the file untouched if the run could not be done. -->
+<!-- 809-guided-r1: Copilot CLI, model auto -> copilot-search-a, gpt-5.6-luna, 2.12 AI credits, session a80e0a47-0d6b-40b5-ace9-0658ee535dde -->
+### test/integration/cassandra_client_test.go:86
+`ConnectionHost` returns only the Docker host, not the mapped Cassandra port. Since Testcontainers maps port `9042` to a dynamically allocated host port, passing this value to `gocql.NewCluster` makes the client try `host:9042` and the integration test cannot connect. Use the Cassandra module's connection string or append the mapped `9042/tcp` port.

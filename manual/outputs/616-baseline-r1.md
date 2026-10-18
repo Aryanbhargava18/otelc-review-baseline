@@ -1,8 +1,3 @@
-<!-- 616-baseline-r1: PR 616, baseline, run 1. Worktree: /Users/aryan./Documents/lfxx/manual-replay/616-baseline
-Paste every comment Copilot leaves in this run as:
-
-### path/to/file.go:LINE
-comment text
-
-Use a fresh review each run. If Copilot leaves no comments, replace this whole file with
-the single line NO COMMENTS. Leave the file untouched if the run could not be done. -->
+<!-- 616-baseline-r1: Copilot CLI, model auto -> gpt-5.6-luna, 0.83 AI credits, session 789325ff-c637-4ba5-9fb1-20c392b66d60 -->
+### tool/internal/setup/setup.go:491
+The vendoring override only checks `GOFLAGS`, not the command-line build arguments. For a vendored project invoked as `otelc go build -mod=vendor ./...`, this appends `GOFLAGS=-mod=mod`, but the explicit `-mod=vendor` argument takes precedence and Go still performs the stale `vendor/modules.txt` consistency check after setup edits `go.mod`, so the build fails. Detect the `-mod` setting from the parsed build arguments as well (or otherwise handle explicit `-mod=vendor`) before applying this fallback.

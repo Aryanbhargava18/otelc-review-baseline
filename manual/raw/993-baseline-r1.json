@@ -1,0 +1,9 @@
+{
+ "run": "993-baseline-r1",
+ "returncode": 0,
+ "model": "gpt-5.6-luna",
+ "ai_credits": "0.52",
+ "session": "07439c65-94fa-4587-9574-245893ce92d6",
+ "stdout": "\u25cf Read CONTRIBUTING.md\n  \u2514 L1:220 (220 lines read)\n\n\u25cf Inspect staged changes (shell)\n  \u2502 git status --short && git diff --cached --stat && git diff --cached --\n  \u2514 119 lines\u2026\n\n\u25cf Read readiness.go\n  \u2502 test/testutil/readiness.go\n  \u2514 L1:180 (105 lines read)\n\n\u2717 Validate staged testutil changes (shell)\n  \u2502 git diff --cached --check && go test ./test/testutil\n  \u2514 Permission to run this tool was denied due to the following rules: `shell(go:*)`\n\n/ Search (grep)\n  \u2502 \"^go [0-9]\" in go.mod\n  \u2514 80 lines found\n\n/ Search (grep)\n  \u2502 \"FreePort\\(\" in **/*.go\n  \u2514 29 lines found\n\nNO COMMENTS\n\n",
+ "stderr": "\n\nChanges    +0 -0\nAI Credits 0.52 (27s)\nTokens     \u2191 56.2k (43.9k cached, 12.3k written) \u2022 \u2193 1.5k (1.2k reasoning)\nResume     copilot --resume=07439c65-94fa-4587-9574-245893ce92d6\n"
+}

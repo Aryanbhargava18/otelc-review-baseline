@@ -1,8 +1,3 @@
-<!-- 616-baseline-r2: PR 616, baseline, run 2. Worktree: /Users/aryan./Documents/lfxx/manual-replay/616-baseline
-Paste every comment Copilot leaves in this run as:
-
-### path/to/file.go:LINE
-comment text
-
-Use a fresh review each run. If Copilot leaves no comments, replace this whole file with
-the single line NO COMMENTS. Leave the file untouched if the run could not be done. -->
+<!-- 616-baseline-r2: Copilot CLI, model auto -> gpt-5.6-luna, 1.24 AI credits, session efa6ff44-7e1f-4083-bd8b-e396596b899e -->
+### tool/internal/setup/setup.go:491
+This condition does not handle an explicitly requested vendor mode. If `GOFLAGS=-mod=vendor`, `goflagsSelectsModMode` returns true and no override is added; if the command contains `-mod=vendor`, the appended `GOFLAGS=-mod=mod` is overridden by the command-line flag. Because setup has modified `go.mod` without updating `vendor/modules.txt`, the subsequent build still runs in vendor mode and fails the vendor consistency check. The explicit `-mod=vendor` case should either be rejected with a clear error or have the vendor metadata updated before building.

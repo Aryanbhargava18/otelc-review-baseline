@@ -1,0 +1,9 @@
+{
+ "run": "1278-guided-r2",
+ "returncode": 0,
+ "model": "gpt-5.6-luna",
+ "ai_credits": "0.67",
+ "session": "e79e832f-be6d-407e-af89-fee9c6b11ff6",
+ "stdout": "\u25cf Read tool.instructions.md\n  \u2502 .github/instructions/tool.instructions.md\n  \u2514 L1:240 (70 lines read)\n\n\u25cf Read AGENTS.md\n  \u2514 L1:240 (77 lines read)\n\n\u25cf Read CONTRIBUTING.md\n  \u2514 L1:240 (240 lines read)\n\n\u25cf Inspect staged diff (shell)\n  \u2502 git --no-pager diff --cached --stat && git --no-pager diff --cached --\n  \u2514 155 lines\u2026\n\n\u25cf Read parser.go\n  \u2502 tool/internal/ast/parser.go\n  \u2514 L1:180 (160 lines read)\n\n\u25cf Read importcfg.go\n  \u2502 tool/internal/imports/importcfg.go\n  \u2514 L1:180 (172 lines read)\n\n\u2717 Run targeted package tests (shell)\n  \u2502 git status --short && go test ./tool/internal/ast ./tool/internal/imports\n  \u2514 Permission to run this tool was denied due to the following rules: `shell(go:*)`\n\n\u25cf Check staged diff whitespace (shell)\n  \u2502 git --no-pager diff --cached --check\n  \u2514 No Content\n\n/ Search (grep)\n  \u2502 \"writeFile\\(\" in *.go (tool)\n  \u2514 43 lines found\n\n/ Search (grep)\n  \u2502 \"WriteFile\\(\" in *.go (tool)\n  \u2514 76 lines found\n\nNO COMMENTS\n\n",
+ "stderr": "\n\nChanges    +0 -0\nAI Credits 0.67 (24s)\nTokens     \u2191 92.6k (73.6k cached, 18.9k written) \u2022 \u2193 1.1k (561 reasoning)\nResume     copilot --resume=e79e832f-be6d-407e-af89-fee9c6b11ff6\n"
+}
